@@ -8,6 +8,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import { ClientPageComponent } from './client-page/client-page.component';
 
 
 
@@ -19,7 +20,8 @@ import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ClientPageComponent
   ],
   imports: [
     BrowserModule,
