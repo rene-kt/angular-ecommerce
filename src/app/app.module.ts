@@ -9,6 +9,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { ClientPageComponent } from './client-page/client-page.component';
+import { RouterModule } from '@angular/router';
+import { SellerPageComponent } from './seller-page/seller-page.component';
+
 
 
 
@@ -21,7 +24,8 @@ import { ClientPageComponent } from './client-page/client-page.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ClientPageComponent
+    ClientPageComponent,
+    SellerPageComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,10 @@ import { ClientPageComponent } from './client-page/client-page.component';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule.forRoot([
+      {path: }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
