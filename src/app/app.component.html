@@ -47,14 +47,14 @@
 
                 <mat-form-field appearance="fill">
                     <mat-label>Type</mat-label>
-                    <mat-select>
+                    <mat-select [(value)]="selectedValue">
                         <mat-option value="option">Client</mat-option>
                         <mat-option value="option">Seller</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <br>
 
-                <button mat-raised-button class="button-save">Primary</button>
+                <button mat-raised-button class="button-save" routerLink="/client-page">Primary</button>
 
 
             </form>
