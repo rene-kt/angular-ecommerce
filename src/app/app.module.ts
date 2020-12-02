@@ -22,6 +22,7 @@ import { SignComponentComponent } from './sign-component/sign-component.componen
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,9 @@ import { SignComponentComponent } from './sign-component/sign-component.componen
     RouterModule.forRoot([
       {path: 'client-page', component: ClientPageComponent},
       {path: 'seller-page', component: SellerPageComponent},
-      {path: '/login', component: AppComponent},
+      {path: 'sign-page', component: SignComponentComponent},
+      {path: '', redirectTo: '/sign-page', pathMatch: 'full'},
+
     ])
   ],
   providers: [],

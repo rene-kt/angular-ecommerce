@@ -6,6 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sign-component.component.css']
 })
 export class SignComponentComponent implements OnInit {
+  selectedValue: string;
+  // hide password
+  hide = true;
+
+
+  login(): void{
+
+  }
 
   constructor() { }
 

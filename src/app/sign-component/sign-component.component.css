@@ -1,0 +1,74 @@
+:root {
+    --purple: #9006EE;
+    --black: #131313;
+    --white: #fff;
+}
+
+.body {
+    height: 100vh;
+    width: 100%;
+    background: var(--purple);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container-box {
+    display: flex;
+    margin-top: 1%;
+    background: var(--white);
+    width: 80%;
+    height: 90%;
+    box-sizing: border-box;
+}
+
+.container-image {
+    width: 50%;
+    justify-content: center;
+}
+
+.container-image img {
+    height: 80%;
+}
+
+.vertical-divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    width: 1px;
+    height: 100%;
+}
+
+.container-form {
+    width: 50%;
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-form {
+    width: 50%;
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-form h2 {
+    text-align: center;
+}
+
+.container-form form {
+    justify-content: center;
+    width: 80%;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.button-save {
+    background-color: var(--purple);
+    color: #fff;
+    float: right;
+}

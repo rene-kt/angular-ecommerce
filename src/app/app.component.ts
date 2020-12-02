@@ -6,13 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  selectedValue: string;
-  title = 'angular-ecommerce';
-  // hide password
-  hide = true;
-
-
-  login(): void{
-
-  }
+ 
 }
