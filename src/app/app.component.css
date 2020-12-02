@@ -50,9 +50,16 @@
 }
 
 .container-form form {
-    padding-left: 5%;
+    justify-content: center;
+    width: 80%;
 }
 
-.container-form input {
-    width: 80%;
+mat-form-field {
+    width: 100%;
+}
+
+.button-save {
+    background-color: var(--purple);
+    color: #fff;
+    float: right;
 }
