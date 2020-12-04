@@ -31,36 +31,21 @@
     height: 80%;
 }
 
-.vertical-divider {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: black;
-    width: 1px;
-    height: 100%;
-}
-
 .container-form {
-    width: 50%;
     display: block;
     justify-content: center;
     align-items: center;
 }
 
-.container-form {
-    width: 50%;
+mat-tab-group {
+    width: 45%;
+}
+
+mat-tab-group form {
+    margin-top: 5%;
     display: block;
     justify-content: center;
     align-items: center;
-}
-
-.container-form h2 {
-    text-align: center;
-}
-
-.container-form form {
-    justify-content: center;
-    width: 80%;
 }
 
 mat-form-field {
@@ -71,4 +56,5 @@ mat-form-field {
     background-color: var(--purple);
     color: #fff;
     float: right;
+    width: 20%;
 }

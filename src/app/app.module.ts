@@ -12,6 +12,8 @@ import { ClientPageComponent } from './client-page/client-page.component';
 import { RouterModule } from '@angular/router';
 import { SellerPageComponent } from './seller-page/seller-page.component';
 import { SignComponentComponent } from './sign-component/sign-component.component';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 
 
@@ -38,6 +40,7 @@ import { SignComponentComponent } from './sign-component/sign-component.componen
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatTabsModule,
     RouterModule.forRoot([
       {path: 'client-page', component: ClientPageComponent},
       {path: 'seller-page', component: SellerPageComponent},

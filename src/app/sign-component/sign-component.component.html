@@ -11,61 +11,79 @@
 
 
         <!-- form -->
-        <div class="container-form">
 
-            <h2>Sign up</h2>
-
-
-            <form>
-
-                <mat-form-field appearance="fill" class="input">
-                    <mat-label>Name</mat-label>
-                    <input matInput>
-                </mat-form-field>
-                <br>
-
-                <mat-form-field appearance="fill">
-                    <mat-label>Email</mat-label>
-                    <input matInput>
-                </mat-form-field>
-                <br>
-
-                <mat-form-field appearance="fill">
-                    <mat-label>CPF</mat-label>
-                    <input matInput>
-                </mat-form-field>
-                <br>
-
-                <mat-form-field appearance="fill">
-                    <mat-label>Enter your password</mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'">
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                        </button>
-                </mat-form-field>
-                <br>
-
-                <mat-form-field appearance="fill">
-                    <mat-label>Type</mat-label>
-                    <mat-select [(value)]="selectedValue">
-                        <mat-option value="option">Client</mat-option>
-                        <mat-option value="option">Seller</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <br>
-
-                <button mat-raised-button class="button-save" routerLink="/client-page">Primary</button>
+        <mat-tab-group mat-align-tabs="center" class=container-form>
+            <mat-tab label="Sign up" class="tab-group">
 
 
-            </form>
+                <form>
+
+                    <mat-form-field appearance="fill" class="input">
+                        <mat-label>Name</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+                    <br>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+                    <br>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>CPF</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+                    <br>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Enter your password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+                    </mat-form-field>
+                    <br>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Type</mat-label>
+                        <mat-select [(value)]="selectedValue">
+                            <mat-option [(value)]="selectedValue" *ngFor="let type of types">{{ type.name }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+
+                    <button mat-raised-button class="button-save">Save</button>
+
+                </form>
+
+            </mat-tab>
+            <mat-tab label="Sign in">
+
+
+                <form>
+
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+                    <br>
+
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Enter your password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+                    </mat-form-field>
+
+                    <button mat-raised-button class="button-save">Save</button>
+
+                </form>
 
 
 
-
-
-
-        </div>
-
-    </div>
-
-</div>
+            </mat-tab>
+        </mat-tab-group>
