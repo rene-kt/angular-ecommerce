@@ -14,6 +14,9 @@ import { SellerPageComponent } from './seller-page/seller-page.component';
 import { SignComponentComponent } from './sign-component/sign-component.component';
 import {MatTabsModule} from '@angular/material/tabs';
 
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
+
 
 
 
@@ -41,6 +44,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatInputModule,
     MatButtonModule,
     MatTabsModule,
+    NgxMaskModule.forRoot(),
     RouterModule.forRoot([
       {path: 'client-page', component: ClientPageComponent},
       {path: 'seller-page', component: SellerPageComponent},

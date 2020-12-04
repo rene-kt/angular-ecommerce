@@ -26,13 +26,13 @@
 
                     <mat-form-field appearance="fill">
                         <mat-label>Email</mat-label>
-                        <input matInput>
+                        <input matInput [type]="'email'">
                     </mat-form-field>
                     <br>
 
                     <mat-form-field appearance="fill">
                         <mat-label>CPF</mat-label>
-                        <input matInput>
+                        <input matInput mask="000.000.000-00">
                     </mat-form-field>
                     <br>
 
@@ -79,6 +79,7 @@
             </button>
                     </mat-form-field>
 
+                    <button mat-button color="warn">Forgot your password?</button>
                     <button mat-raised-button class="button-save">Save</button>
 
                 </form>

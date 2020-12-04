@@ -19,7 +19,7 @@
     background: var(--white);
     width: 80%;
     height: 90%;
-    box-sizing: border-box;
+    border-radius: 15px;
 }
 
 .container-image {
