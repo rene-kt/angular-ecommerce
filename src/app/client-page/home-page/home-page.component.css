@@ -1,0 +1,33 @@
+.cards {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cards div {
+    margin: 5%;
+    width: 25%;
+    height: 20vh;
+}
+
+.cards div .content {
+    color: #fff;
+    justify-content: center;
+}
+
+.cards div .content h2 {
+    font-size: 1.5em;
+    font-weight: 800;
+}
+
+.cards .orders {
+    background-color: blueviolet;
+}
+
+.cards .money {
+    background-color: lightgreen;
+}
+
+.cards .wishlist {
+    background-color: lightsalmon;
+}

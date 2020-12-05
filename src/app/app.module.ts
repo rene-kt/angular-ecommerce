@@ -48,10 +48,11 @@ import { HomePageComponent } from './client-page/home-page/home-page.component'
     MatTabsModule,
     NgxMaskModule.forRoot(),
     RouterModule.forRoot([
-      {path: 'client-page', component: ClientPageComponent},
+      {path: 'client-page', component: ClientPageComponent, children: [
+        { path: 'home', component: HomePageComponent },
+      ]},
       {path: 'seller-page', component: SellerPageComponent},
       {path: 'sign-page', component: SignComponentComponent},
-      {path: 'client-page/home', component: HomePageComponent},
       {path: '', redirectTo: '/sign-page', pathMatch: 'full'},
 
     ])
