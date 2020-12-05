@@ -14,7 +14,8 @@ import { SellerPageComponent } from './seller-page/seller-page.component';
 import { SignComponentComponent } from './sign-component/sign-component.component';
 import {MatTabsModule} from '@angular/material/tabs';
 
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { HomePageComponent } from './client-page/home-page/home-page.component'
 
 
 
@@ -33,7 +34,8 @@ import { NgxMaskModule, IConfig } from 'ngx-mask'
     AppComponent,
     ClientPageComponent,
     SellerPageComponent,
-    SignComponentComponent
+    SignComponentComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask'
       {path: 'client-page', component: ClientPageComponent},
       {path: 'seller-page', component: SellerPageComponent},
       {path: 'sign-page', component: SignComponentComponent},
+      {path: 'client-page/home', component: HomePageComponent},
       {path: '', redirectTo: '/sign-page', pathMatch: 'full'},
 
     ])
