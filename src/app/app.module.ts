@@ -14,10 +14,12 @@ import { SellerPageComponent } from './seller-page/seller-page.component';
 import { SignComponentComponent } from './sign-component/sign-component.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
-import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { NgxMaskModule} from 'ngx-mask';
 import { HomePageComponent } from './client-page/home-page/home-page.component';
-import { ProductsPageComponent } from './client-page/products-page/products-page.component'
+import { ProductsPageComponent } from './client-page/products-page/products-page.component';
+import { WishlistPageComponent } from './client-page/wishlist-page/wishlist-page.component'
 
 
 
@@ -38,7 +40,8 @@ import { ProductsPageComponent } from './client-page/products-page/products-page
     SellerPageComponent,
     SignComponentComponent,
     HomePageComponent,
-    ProductsPageComponent
+    ProductsPageComponent,
+    WishlistPageComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { ProductsPageComponent } from './client-page/products-page/products-page
     MatButtonModule,
     MatTabsModule,
     MatCardModule,
+    MatPaginatorModule,
     NgxMaskModule.forRoot(),
     RouterModule.forRoot([
       {path: 'client-page', component: ClientPageComponent, children: [
