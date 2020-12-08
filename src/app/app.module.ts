@@ -59,6 +59,7 @@ import { WishlistPageComponent } from './client-page/wishlist-page/wishlist-page
       {path: 'client-page', component: ClientPageComponent, children: [
         { path: 'home', component: HomePageComponent },
         { path: 'products', component: ProductsPageComponent },
+        { path: 'wishlist', component: WishlistPageComponent },
       ]},
       {path: 'seller-page', component: SellerPageComponent},
       {path: 'sign-page', component: SignComponentComponent},
