@@ -13,9 +13,11 @@ import { RouterModule } from '@angular/router';
 import { SellerPageComponent } from './seller-page/seller-page.component';
 import { SignComponentComponent } from './sign-component/sign-component.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
 
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { HomePageComponent } from './client-page/home-page/home-page.component'
+import { HomePageComponent } from './client-page/home-page/home-page.component';
+import { ProductsPageComponent } from './client-page/products-page/products-page.component'
 
 
 
@@ -35,7 +37,8 @@ import { HomePageComponent } from './client-page/home-page/home-page.component'
     ClientPageComponent,
     SellerPageComponent,
     SignComponentComponent,
-    HomePageComponent
+    HomePageComponent,
+    ProductsPageComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { HomePageComponent } from './client-page/home-page/home-page.component'
     MatInputModule,
     MatButtonModule,
     MatTabsModule,
+    MatTableModule,
     NgxMaskModule.forRoot(),
     RouterModule.forRoot([
       {path: 'client-page', component: ClientPageComponent, children: [
