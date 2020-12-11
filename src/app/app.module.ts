@@ -26,6 +26,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SellsPageComponent } from './seller-page/sells-page/sells-page.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     WishlistPageComponent,
     OrderPageComponent,
     ProfilePageComponent,
+    SellsPageComponent,
   ],
   imports: [
     BrowserModule,

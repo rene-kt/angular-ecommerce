@@ -47,8 +47,8 @@ export class SignComponentComponent implements OnInit {
     this.signUpForm.reset();
   }
   
-  forgotPassword(email: string){
-    console.log(email);
+  forgotPassword(){
+    console.log(this.signInForm.value.email);
   }
   constructor() {}
 
