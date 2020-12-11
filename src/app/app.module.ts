@@ -27,6 +27,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SellsPageComponent } from './seller-page/sells-page/sells-page.component';
+import { HomePageComponentSeller } from './seller-page/home-page/home-page.component';
+import { ProfilePageComponentSeller } from './seller-page/profile-page/profile-page.component';
+import { ProductsPageComponentSeller } from './seller-page/products-page/products-page.component';
 
 
 @NgModule({
@@ -67,9 +70,18 @@ import { SellsPageComponent } from './seller-page/sells-page/sells-page.componen
           { path: 'wishlist', component: WishlistPageComponent },
           { path: 'profile', component: ProfilePageComponent },
           { path: 'orders', component: OrderPageComponent },
+          { path: '', redirectTo: 'home', pathMatch: 'full' },
+
         ],
       },
-      { path: 'seller-page', component: SellerPageComponent },
+      { path: 'seller-page', component: SellerPageComponent ,
+    children: [
+          { path: 'home', component: HomePageComponentSeller },
+          { path: 'profile', component: ProfilePageComponentSeller },
+          { path: 'products', component: ProductsPageComponentSeller },
+          { path: 'sells', component: SellsPageComponent },
+          { path: '', redirectTo: 'home', pathMatch: 'full' },
+        ],},
       { path: 'sign-page', component: SignComponentComponent },
       { path: '', redirectTo: '/sign-page', pathMatch: 'full' },
     ]),
