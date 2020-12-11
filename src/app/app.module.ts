@@ -19,7 +19,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { NgxMaskModule} from 'ngx-mask';
 import { HomePageComponent } from './client-page/home-page/home-page.component';
 import { ProductsPageComponent } from './client-page/products-page/products-page.component';
-import { WishlistPageComponent } from './client-page/wishlist-page/wishlist-page.component'
+import { WishlistPageComponent } from './client-page/wishlist-page/wishlist-page.component';
+import { OrderPageComponent } from './client-page/order-page/order-page.component';
+import { ProfilePageComponent } from './client-page/profile-page/profile-page.component'
 
 
 
@@ -41,7 +43,9 @@ import { WishlistPageComponent } from './client-page/wishlist-page/wishlist-page
     SignComponentComponent,
     HomePageComponent,
     ProductsPageComponent,
-    WishlistPageComponent
+    WishlistPageComponent,
+    OrderPageComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,
