@@ -24,6 +24,9 @@ import { OrderPageComponent } from './client-page/order-page/order-page.componen
 import { ProfilePageComponent } from './client-page/profile-page/profile-page.component';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -50,6 +53,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatListModule,
     MatSnackBarModule,
     MatPaginatorModule,
+    ReactiveFormsModule,
     NgxMaskModule.forRoot(),
     RouterModule.forRoot([
       {
