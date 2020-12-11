@@ -15,7 +15,6 @@ import { SignComponentComponent } from './sign-component/sign-component.componen
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
 import { NgxMaskModule } from 'ngx-mask';
 import { HomePageComponent } from './client-page/home-page/home-page.component';
 import { ProductsPageComponent } from './client-page/products-page/products-page.component';
@@ -24,13 +23,12 @@ import { OrderPageComponent } from './client-page/order-page/order-page.componen
 import { ProfilePageComponent } from './client-page/profile-page/profile-page.component';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {MatDialogModule} from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SellsPageComponent } from './seller-page/sells-page/sells-page.component';
 import { HomePageComponentSeller } from './seller-page/home-page/home-page.component';
-import { ProfilePageComponentSeller } from './seller-page/profile-page/profile-page.component';
 import { ProductsPageComponentSeller } from './seller-page/products-page/products-page.component';
-
+import { CommonModule } from '@angular/common';
+import { ProfilePageComponentSeller } from './seller-page/profile-page/profile-page.component';
 
 @NgModule({
   declarations: [
@@ -39,14 +37,18 @@ import { ProductsPageComponentSeller } from './seller-page/products-page/product
     SellerPageComponent,
     SignComponentComponent,
     HomePageComponent,
+    HomePageComponentSeller,
     ProductsPageComponent,
+    ProductsPageComponentSeller,
     WishlistPageComponent,
     OrderPageComponent,
     ProfilePageComponent,
+    ProfilePageComponentSeller,
     SellsPageComponent,
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     BrowserAnimationsModule,
     MatSelectModule,
     MatIconModule,
@@ -68,20 +70,22 @@ import { ProductsPageComponentSeller } from './seller-page/products-page/product
           { path: 'home', component: HomePageComponent },
           { path: 'products', component: ProductsPageComponent },
           { path: 'wishlist', component: WishlistPageComponent },
-          { path: 'profile', component: ProfilePageComponent },
+          { path: 'profile', component: ProfilePageComponentSeller },
           { path: 'orders', component: OrderPageComponent },
           { path: '', redirectTo: 'home', pathMatch: 'full' },
-
         ],
       },
-      { path: 'seller-page', component: SellerPageComponent ,
-    children: [
+      {
+        path: 'seller-page',
+        component: SellerPageComponent,
+        children: [
           { path: 'home', component: HomePageComponentSeller },
           { path: 'profile', component: ProfilePageComponentSeller },
           { path: 'products', component: ProductsPageComponentSeller },
           { path: 'sells', component: SellsPageComponent },
           { path: '', redirectTo: 'home', pathMatch: 'full' },
-        ],},
+        ],
+      },
       { path: 'sign-page', component: SignComponentComponent },
       { path: '', redirectTo: '/sign-page', pathMatch: 'full' },
     ]),

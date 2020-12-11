@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-profile-page',
@@ -11,5 +12,18 @@ export class ProfilePageComponentSeller implements OnInit {
 
   ngOnInit(): void {
   }
+
+  selectedValue = 'Client';
+  // hide password
+  hide = true;
+
+
+  formGroup = new FormGroup({
+    name: new FormControl(''),
+    email: new FormControl(''),
+    cpf: new FormControl(''),
+    password: new FormControl('')
+  })
+
 
 }

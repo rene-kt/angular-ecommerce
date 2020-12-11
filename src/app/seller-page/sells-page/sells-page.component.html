@@ -1,1 +1,12 @@
-<p>sells-page works!</p>
+<mat-list>
+    <div mat-subheader>Folders</div>
+    <mat-list-item *ngFor="let folder of folders">
+        <mat-divider></mat-divider>
+
+        <i class="fas fa-shopping-cart"></i>
+        <div mat-line>{{folder.name}}</div>
+        <div mat-line> {{folder.updated | date}} </div>
+        <div mat-line> R$ 50.00 </div>
+    </mat-list-item>
+
+</mat-list>

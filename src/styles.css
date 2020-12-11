@@ -121,3 +121,78 @@ body {
 .card .content {
     text-align: left;
 }
+
+.home-cards {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-cards div {
+    margin: 5%;
+    width: 25%;
+    height: 20vh;
+}
+
+.home-cards div .content {
+    color: #fff;
+    justify-content: center;
+}
+
+.home-cards div .content h2 {
+    font-size: 1.5em;
+    font-weight: 800;
+}
+
+.home-cards .orders {
+    background-color: blueviolet;
+}
+
+.home-cards .money {
+    background-color: lightgreen;
+}
+
+.home-cards .wishlist {
+    background-color: lightsalmon;
+}
+
+.ranking {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.ranking .box {
+    margin: 5%;
+    width: 40%;
+    height: 50vh;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-align: left;
+}
+
+.ranking .box .content {
+    display: block;
+    margin-top: 2%;
+}
+
+.ranking .box h2 {
+    text-align: center;
+}
+
+.ranking .box ul {
+    list-style-type: none;
+}
+
+.icon {
+    width: 25px;
+    height: 25px;
+}
+
+.ranking .box ul li:nth-child(1) {
+    font-weight: 800;
+}

@@ -1,0 +1,31 @@
+.box {
+    width: 90%;
+    height: 80vh;
+    margin: 5%;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-align: left;
+}
+
+.box mat-form-field {
+    width: 90%;
+    display: block;
+    justify-content: left;
+    align-items: flex-start;
+    margin-left: 5%;
+}
+
+.box h2 {
+    text-align: center;
+    margin: 5%;
+}
+
+.box button {
+    margin: 5%;
+    width: 90%;
+    font-size: 1.2em;
+    height: 5vh;
+}
