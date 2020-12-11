@@ -1,1 +1,35 @@
-<p>profile-page works!</p>
+<div class="header"> Profile page </div>
+
+
+<div class="box">
+
+    <h2>Update your profile</h2>
+    <form>
+
+        <mat-form-field appearance="fill" class="input">
+            <mat-label>Name</mat-label>
+            <input matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput [type]="'email'">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>CPF</mat-label>
+            <input matInput mask="000.000.000-00">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+</button>
+        </mat-form-field>
+
+        <button mat-raised-button class="btn-success">Update profile</button>
+    </form>
+
+</div>

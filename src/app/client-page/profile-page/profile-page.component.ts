@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePageComponent implements OnInit {
 
+    selectedValue = 'Client';
+  // hide password
+  hide = true;
+
+
   constructor() { }
 
   ngOnInit(): void {

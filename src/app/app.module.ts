@@ -64,6 +64,7 @@ import { ProfilePageComponent } from './client-page/profile-page/profile-page.co
         { path: 'home', component: HomePageComponent },
         { path: 'products', component: ProductsPageComponent },
         { path: 'wishlist', component: WishlistPageComponent },
+        { path: 'profile', component: ProfilePageComponent },
       ]},
       {path: 'seller-page', component: SellerPageComponent},
       {path: 'sign-page', component: SignComponentComponent},
