@@ -13,7 +13,7 @@
             </p>
         </mat-card-content>
         <mat-card-actions class="buttons">
-            <button mat-button> <i class="fas fa-times"></i> REMOVE</button>
+            <button mat-button (click)="removeProductInYourWishlistAndShowSnackbar('Product', 'Undo')"> <i class="fas fa-times"></i> REMOVE</button>
             <button mat-button> <i class="fas fa-shopping-cart"></i> BUY</button>
         </mat-card-actions>
     </mat-card>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-wishlist-page',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WishlistPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+  }
+
+  addProductInYourWishlist(){
+    console.log('deu certo');
+  }
+  removeProductInYourWishlistAndShowSnackbar(productName: string, action: string) {
+    let snackBarRef = this._snackBar.open(
+      'You have removed the product |' + productName + '| from your wishlist ',
+      action,
+
+      {
+        duration: 3000,
+      }
+    );
+    snackBarRef.onAction().subscribe(()=> this.addProductInYourWishlist());
   }
 
 }
