@@ -22,6 +22,7 @@ import { ProductsPageComponent } from './client-page/products-page/products-page
 import { WishlistPageComponent } from './client-page/wishlist-page/wishlist-page.component';
 import { OrderPageComponent } from './client-page/order-page/order-page.component';
 import { ProfilePageComponent } from './client-page/profile-page/profile-page.component'
+import {MatListModule} from '@angular/material/list';
 
 
 
@@ -57,6 +58,7 @@ import { ProfilePageComponent } from './client-page/profile-page/profile-page.co
     MatButtonModule,
     MatTabsModule,
     MatCardModule,
+    MatListModule,
     MatPaginatorModule,
     NgxMaskModule.forRoot(),
     RouterModule.forRoot([
@@ -65,6 +67,7 @@ import { ProfilePageComponent } from './client-page/profile-page/profile-page.co
         { path: 'products', component: ProductsPageComponent },
         { path: 'wishlist', component: WishlistPageComponent },
         { path: 'profile', component: ProfilePageComponent },
+        { path: 'orders', component: OrderPageComponent },
       ]},
       {path: 'seller-page', component: SellerPageComponent},
       {path: 'sign-page', component: SignComponentComponent},
