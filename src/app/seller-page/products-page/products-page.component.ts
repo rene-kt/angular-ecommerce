@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmationDialogComponent } from 'src/app/dialogs/confirmation-dialog/confirmation-dialog.component';
 
 export interface Product {
   name: string;
@@ -26,7 +27,18 @@ export class ProductsPageComponentSeller implements OnInit {
   ];
 
 
-  openRemoveDialog(){
+  openRemoveDialog(productName: string){
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+
+
+      if(result){
+        this.removeProduct(productName, 'Undo');
+      }
+      console.log(`Dialog result: ${result}`);
+    });
+  
   }
 
   undoRemove(){
