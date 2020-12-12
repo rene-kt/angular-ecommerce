@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface Product {
@@ -11,7 +12,7 @@ export interface Product {
   styleUrls: ['./products-page.component.css'],
 })
 export class ProductsPageComponentSeller implements OnInit {
-  constructor(private _snackBar: MatSnackBar) {}
+  constructor(private _snackBar: MatSnackBar, private dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
@@ -23,6 +24,10 @@ export class ProductsPageComponentSeller implements OnInit {
       name: 'Recipes',
     },
   ];
+
+
+  openRemoveDialog(){
+  }
 
   undoRemove(){
     console.log('deu certo');

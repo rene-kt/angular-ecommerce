@@ -29,6 +29,8 @@ import { HomePageComponentSeller } from './seller-page/home-page/home-page.compo
 import { ProductsPageComponentSeller } from './seller-page/products-page/products-page.component';
 import { CommonModule } from '@angular/common';
 import { ProfilePageComponentSeller } from './seller-page/profile-page/profile-page.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { ProfilePageComponentSeller } from './seller-page/profile-page/profile-p
     ProfilePageComponent,
     ProfilePageComponentSeller,
     SellsPageComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ import { ProfilePageComponentSeller } from './seller-page/profile-page/profile-p
     MatListModule,
     MatSnackBarModule,
     MatPaginatorModule,
+    MatDialogModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot(),
     RouterModule.forRoot([
