@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmationDialogComponent } from 'src/app/dialogs/confirmation-dialog/confirmation-dialog.component';
 
 export interface Product {
   name: string;
@@ -11,7 +13,7 @@ export interface Product {
   styleUrls: ['./products-page.component.css'],
 })
 export class ProductsPageComponent implements OnInit {
-  constructor(private _snackBar: MatSnackBar) {}
+  constructor(private _snackBar: MatSnackBar, private dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
@@ -23,6 +25,32 @@ export class ProductsPageComponent implements OnInit {
       name: 'Recipes',
     },
   ];
+
+  openBuyDialog(productName: string){
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+
+
+      if(result){
+        this.buyProduct(productName, 'Dismiss');
+      }
+    });
+  
+  }
+
+    buyProduct(productName: string, action: string) {
+      this._snackBar.open(
+        'You have bought the product |' + productName + '|' + 
+        " We're sending a confirmation email to your inbox",
+        action,
+  
+        {
+          duration: 5000,
+        }
+      );
+    }
+  
 
   removeProductFromWishlist(){
     console.log('deu certo');
