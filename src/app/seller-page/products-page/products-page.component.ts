@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from 'src/app/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { EditProductDialogComponent } from 'src/app/dialogs/edit-product-dialog/edit-product-dialog.component';
 
 export interface Product {
   name: string;
@@ -26,29 +27,40 @@ export class ProductsPageComponentSeller implements OnInit {
     },
   ];
 
-
-  openRemoveDialog(productName: string){
+  openRemoveDialog(productName: string) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
-
-
-      if(result){
-        this.removeProduct(productName, 'Undo');
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.removeProduct(productName, 'Dismiss');
       }
-      console.log(`Dialog result: ${result}`);
     });
-  
   }
 
-  undoRemove(){
-    console.log('deu certo');
+  openEditDialog(productName: string) {
+    const dialogRef = this.dialog.open(EditProductDialogComponent);
+
+    
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.editProduct(productName, 'Dismiss');
+      }
+    });
   }
 
+  editProduct(productName: string, action: string) {
+    this._snackBar.open(
+      'You have edited the product |' + productName + '| ',
+      action,
 
-  // parametro com o produto para mostrar o nome
+      {
+        duration: 3000,
+      }
+    );
+  }
+
   removeProduct(productName: string, action: string) {
-    let snackBarRef = this._snackBar.open(
+    this._snackBar.open(
       'You have removed the product |' + productName + '| ',
       action,
 
@@ -56,7 +68,5 @@ export class ProductsPageComponentSeller implements OnInit {
         duration: 3000,
       }
     );
-    snackBarRef.onAction().subscribe(()=> this.undoRemove());
   }
-
 }

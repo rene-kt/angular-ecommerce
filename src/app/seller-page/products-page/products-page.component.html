@@ -20,7 +20,7 @@
             </p>
         </mat-card-content>
         <mat-card-actions class="buttons">
-            <button mat-button> <i class="fas fa-edit"></i> EDIT</button>
+            <button mat-button (click)="openEditDialog(product.name)"> <i class="fas fa-edit"></i> EDIT</button>
             <button mat-button (click)="openRemoveDialog(product.name)"> <i class="fas fa-times"></i> REMOVE</button>
         </mat-card-actions>
     </mat-card>

@@ -31,6 +31,7 @@ import { CommonModule } from '@angular/common';
 import { ProfilePageComponentSeller } from './seller-page/profile-page/profile-page.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confirmation-dialog.component';
+import { EditProductDialogComponent } from './dialogs/edit-product-dialog/edit-product-dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confi
     ProfilePageComponentSeller,
     SellsPageComponent,
     ConfirmationDialogComponent,
+    EditProductDialogComponent,
   ],
   imports: [
     BrowserModule,

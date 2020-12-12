@@ -67,4 +67,5 @@ mat-form-field {
     background-color: var(--purple);
     color: #fff;
     margin-left: 5%;
+    float: right;
 }

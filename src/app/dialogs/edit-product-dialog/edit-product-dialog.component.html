@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Editing PRODUCT NAME</h2>
+<mat-dialog-content class="mat-typography">
+    <h3>Do you want to proceed?</h3>
+
+
+
+    <form [formGroup]="editForm">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" required>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Description</mat-label>
+            <input matInput formControlName="desc" required>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Price</mat-label>
+            <input matInput type="number" formControlName="price" required>
+        </mat-form-field>
+        <br>
+
+
+    </form>
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button [disabled]="!editForm.valid" (click)="edit()" type="submit" mat-button [mat-dialog-close]="true" cdkFocusInitial>Yes</button>
+</mat-dialog-actions>
