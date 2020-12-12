@@ -1,5 +1,9 @@
+import { SignUpUser } from './../models/users/signup-user';
+import { Client } from './../models/users/client';
+import { SignServiceService } from './../services/sign-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { error } from '@angular/compiler/src/util';
 
 interface Type {
   name: string;
@@ -15,6 +19,7 @@ export class SignComponentComponent implements OnInit {
   // hide password
   hide = true;
   check = true;
+  signUpUser = {} as SignUpUser;
 
   types: Type[] = [{ name: 'Client' }, { name: 'Seller' }];
 
@@ -26,8 +31,26 @@ export class SignComponentComponent implements OnInit {
   })
 
   signUp(){
-    console.log('deu certo sign up');
-      console.warn(this.signUpForm.value);
+
+    if(this.selectedValue === 'Client'){
+      this.signUpUser.name = this.signUpForm.value.name;
+      this.signUpUser.cpf = this.signUpForm.value.cpf;
+      this.signUpUser.email = this.signUpForm.value.email;
+      this.signUpUser.password = this.signUpForm.value.password;
+
+
+      this.signService.signUpClient(this.signUpUser).subscribe(() => {
+        console.log('deu certo');
+      },(error) =>{
+        console.log(error);
+      }
+      
+      
+      );
+
+    }else{
+      console.log(' n entrou o client, entrou:' + this.selectedValue);
+    }
 
   }
 
@@ -50,7 +73,7 @@ export class SignComponentComponent implements OnInit {
   forgotPassword(){
     console.log(this.signInForm.value.email);
   }
-  constructor() {}
+  constructor(private signService: SignServiceService) {}
 
   
   ngOnInit(): void {}

@@ -14,7 +14,7 @@ export class SignServiceService {
     }),
   };
   
-  apiUrl = "renejr-ecommerce.herokuapp.com";
+  apiUrl = 'https://renejr-ecommerce.herokuapp.com';
 
   constructor(private httpClient: HttpClient) { }
 

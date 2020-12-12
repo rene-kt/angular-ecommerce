@@ -32,6 +32,7 @@ import { ProfilePageComponentSeller } from './seller-page/profile-page/profile-p
 import {MatDialogModule} from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confirmation-dialog.component';
 import { EditProductDialogComponent } from './dialogs/edit-product-dialog/edit-product-dialog.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { EditProductDialogComponent } from './dialogs/edit-product-dialog/edit-p
     MatPaginatorModule,
     MatDialogModule,
     ReactiveFormsModule,
+    HttpClientModule,
     NgxMaskModule.forRoot(),
     RouterModule.forRoot([
       {

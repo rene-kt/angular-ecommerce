@@ -50,7 +50,7 @@
                     <mat-form-field appearance="fill">
                         <mat-label>Type</mat-label>
                         <mat-select [(value)]="selectedValue">
-                            <mat-option [(value)]="selectedValue" *ngFor="let type of types">{{ type.name }}</mat-option>
+                            <mat-option [(value)]="selectedValue" *ngFor="let type of types">{{ selectedValue }}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <br>
