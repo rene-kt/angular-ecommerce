@@ -24,22 +24,22 @@ export class ProductsPageComponentSeller implements OnInit {
     },
   ];
 
-  removeProductFromWishlist(){
+  undoRemove(){
     console.log('deu certo');
   }
 
 
   // parametro com o produto para mostrar o nome
-  addProductInYourWishlistAndShowSnackbar(productName: string, action: string) {
+  removeProduct(productName: string, action: string) {
     let snackBarRef = this._snackBar.open(
-      'You have added the product |' + productName + '| in your wishlist ',
+      'You have removed the product |' + productName + '| ',
       action,
 
       {
         duration: 3000,
       }
     );
-    snackBarRef.onAction().subscribe(()=> this.removeProductFromWishlist());
+    snackBarRef.onAction().subscribe(()=> this.undoRemove());
   }
 
 }

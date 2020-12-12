@@ -4,12 +4,15 @@
 
 </mat-paginator>
 
+<h2>Your products</h2>
+
 <div class="cards">
+
 
     <mat-card class="card" *ngFor="let product of products">
         <mat-card-header class="header">
             <mat-card-title>{{ product.name }} </mat-card-title>
-            <mat-card-subtitle>Nome do vendedor</mat-card-subtitle>
+            <mat-card-subtitle>UNSOLD</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
             <p>
@@ -17,8 +20,8 @@
             </p>
         </mat-card-content>
         <mat-card-actions class="buttons">
-            <button mat-button (click)="addProductInYourWishlistAndShowSnackbar(product.name, 'Undo')"> <i class="fas fa-heart"></i> WISHLIST</button>
-            <button mat-button> <i class="fas fa-shopping-cart"></i> BUY</button>
+            <button mat-button> <i class="fas fa-edit"></i> EDIT</button>
+            <button mat-button (click)="removeProduct(product.name, 'Undo')"> <i class="fas fa-times"></i> REMOVE</button>
         </mat-card-actions>
     </mat-card>
 

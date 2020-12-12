@@ -53,19 +53,18 @@ mat-form-field {
 }
 
 .buttons {
-    float: right;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .buttons button {
     text-align: center;
     font-size: 1vw;
     width: 7vw;
-    margin-left: 2vw;
 }
 
 .button-save {
     background-color: var(--purple);
     color: #fff;
-    float: right;
-    width: 7vw;
+    margin-left: 5%;
 }

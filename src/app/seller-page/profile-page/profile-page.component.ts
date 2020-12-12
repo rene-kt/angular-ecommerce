@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
+
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
@@ -24,6 +25,10 @@ export class ProfilePageComponentSeller implements OnInit {
     cpf: new FormControl(''),
     password: new FormControl('')
   })
+
+  
+
+ 
 
 
 }
