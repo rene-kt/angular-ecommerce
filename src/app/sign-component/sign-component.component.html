@@ -55,12 +55,15 @@
                     </mat-form-field>
                     <br>
 
-                    <div class="buttons">
+                    <div class="buttons" *ngIf="!isLoading">
 
 
                         <button (click)="clearFieldsSignUp()" class="button-clear" type="button" mat-button>Clear fields</button>
                         <button type="submit" mat-raised-button [disabled]="!signUpForm.valid" class="button-save">Save</button>
                     </div>
+
+                    <mat-spinner *ngIf="isLoading"></mat-spinner>
+
 
                 </form>
 

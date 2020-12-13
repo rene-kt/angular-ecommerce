@@ -33,6 +33,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confirmation-dialog.component';
 import { EditProductDialogComponent } from './dialogs/edit-product-dialog/edit-product-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 @NgModule({
   declarations: [
@@ -69,6 +71,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatProgressSpinnerModule,
     NgxMaskModule.forRoot(),
     RouterModule.forRoot([
       {

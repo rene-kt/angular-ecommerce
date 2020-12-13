@@ -1,9 +1,11 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { SignUpUser } from './../models/users/signup-user';
 import { Client } from './../models/users/client';
 import { SignServiceService } from './../services/sign-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { error } from '@angular/compiler/src/util';
+import { HttpErrorResponse } from '@angular/common/http';
 
 interface Type {
   name: string;
@@ -20,6 +22,7 @@ export class SignComponentComponent implements OnInit {
   hide = true;
   check = true;
   signUpUser = {} as SignUpUser;
+  isLoading = false;
 
   types: Type[] = [{ name: 'Client' }, { name: 'Seller' }];
 
@@ -32,6 +35,7 @@ export class SignComponentComponent implements OnInit {
 
   signUp(){
 
+      this.isLoading = true;
     if(this.selectedValue === 'Client'){
       this.signUpUser.name = this.signUpForm.value.name;
       this.signUpUser.cpf = this.signUpForm.value.cpf;
@@ -40,12 +44,14 @@ export class SignComponentComponent implements OnInit {
 
 
       this.signService.signUpClient(this.signUpUser).subscribe(() => {
-        console.log('deu certo');
+        this.isLoading = false;
+        this.confirmationSignUp();
       },(error) =>{
+        this.isLoading = false;
         console.log(error);
       }
       
-      
+
       );
 
     }else{
@@ -64,6 +70,16 @@ export class SignComponentComponent implements OnInit {
   })
   
   
+  confirmationSignUp() {
+    this._snackBar.open(
+      'Your profile was created',
+      'Dismiss',
+
+      {
+        duration: 3000,
+      }
+    );
+  }
 
 
   clearFieldsSignUp(){
@@ -73,7 +89,7 @@ export class SignComponentComponent implements OnInit {
   forgotPassword(){
     console.log(this.signInForm.value.email);
   }
-  constructor(private signService: SignServiceService) {}
+  constructor(private signService: SignServiceService, private _snackBar: MatSnackBar) {}
 
   
   ngOnInit(): void {}
