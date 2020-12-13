@@ -3,6 +3,7 @@ import { SignUpUser } from './../models/users/signup-user';
 import { SignServiceService } from './../services/sign-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { LoginUser } from '../models/users/login-user';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class SignComponentComponent implements OnInit {
   check = true;
   signUpUser = {} as SignUpUser;
   isLoading = false;
+  loginUser = {} as LoginUser;
 
 
   signUpForm = new FormGroup({
@@ -64,21 +66,14 @@ export class SignComponentComponent implements OnInit {
         this.confirmationSignUp();
       },
       (error) => {
+        console.log(error);
         this.invalidForm();
         this.isLoading = false;
       }
     );
   }
-  login() {
-    console.log('deu certo');
-  }
 
-  signInForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
-  });
-
-  confirmationSignUp() {
+   confirmationSignUp() {
     this._snackBar.open(
       'Your profile was created',
       'Dismiss',
@@ -92,7 +87,7 @@ export class SignComponentComponent implements OnInit {
 
   errorSignUp() {
     this._snackBar.open(
-      'This email/cpf are being used by other user',
+      'This email is being used by other user',
       'I got it',
 
       {
@@ -111,8 +106,76 @@ export class SignComponentComponent implements OnInit {
     this.signUpForm.reset();
   }
 
+  login() {
+    this.isLoading = true;
+    this.parseFormInfoIntoLoginObject();
+
+    if(this.selectedValue === 'client'){
+      this.loginAsClient();
+    }else{
+      this.loginAsSeller();
+    }
+
+  }
+
+  loginAsSeller(){
+    
+    this.signService.login(this.loginUser).subscribe(() =>{
+      // abrir pagina do seller
+      this.isLoading = false;
+      console.log('deu certo');
+    }, (error) =>{
+      this.emailOrPasswordIncorrect();
+      this.isLoading = false;
+
+    })
+  }
+  loginAsClient(){
+    
+    this.signService.login(this.loginUser).subscribe(() =>{
+      // abrir pagina do client
+      console.log('deu certo');
+      this.isLoading = false;
+
+    }, (error) =>{
+      this.emailOrPasswordIncorrect();
+      this.isLoading = false;
+
+    })
+  }
+
+  emailOrPasswordIncorrect(){
+    this.loginForm.controls['email'].setErrors({ incorrect: true });
+    this.loginForm.controls['password'].setErrors({ incorrect: true });
+    this.errorLogin();
+  }
+
+  
+  errorLogin() {
+    this._snackBar.open(
+      'Email or password incorrect',
+      'I got it',
+
+      {
+        duration: 5000,
+        panelClass: ['purple-snackbar'],
+      }
+    );
+  }
+
+  parseFormInfoIntoLoginObject(){
+    this.loginUser.email = this.loginForm.value.email;
+    this.loginUser.password = this.loginForm.value.password;
+  }
+
+  loginForm = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl(''),
+  });
+
+ 
   forgotPassword() {
-    console.log(this.signInForm.value.email);
+    console.log(this.loginForm.value.email);
   }
   constructor(
     private signService: SignServiceService,

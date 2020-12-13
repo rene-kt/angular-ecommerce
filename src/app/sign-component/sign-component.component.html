@@ -67,10 +67,10 @@
                 </div>
 
             </mat-tab>
-            <mat-tab label="Sign in">
+            <mat-tab label="Login">
 
 
-                <form [formGroup]="signInForm" (ngSubmit)="login()">
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
 
 
                     <mat-form-field appearance="fill">
@@ -87,9 +87,27 @@
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
                     </mat-form-field>
-                    <button mat-button color="warn" (click)="forgotPassword()">Forgot your password?</button>
-                    <button mat-raised-button class="button-save" [disabled]="!signInForm.valid">Save</button>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Login as</mat-label>
+                        <mat-select [(value)]="selectedValue">
+                            <mat-option value="client">Client</mat-option>
+                            <mat-option value="seller">Seller</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <div *ngIf="!isLoading">
+
+                        <button mat-button color="warn" (click)="forgotPassword()">Forgot your password?</button>
+                        <button mat-raised-button class="button-save" [disabled]="!loginForm.valid">Save</button>
+
+                    </div>
                 </form>
+
+                <div class="uploader-status">
+                    <mat-spinner *ngIf="isLoading"></mat-spinner>
+                </div>
+
 
             </mat-tab>
         </mat-tab-group>
