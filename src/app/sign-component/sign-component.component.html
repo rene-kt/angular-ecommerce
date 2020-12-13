@@ -32,11 +32,6 @@
                     </mat-form-field>
                     <br>
 
-                    <mat-form-field appearance="fill">
-                        <mat-label>CPF</mat-label>
-                        <input matInput mask="000.000.000-00" formControlName="cpf" required>
-                    </mat-form-field>
-                    <br>
 
                     <mat-form-field appearance="fill">
                         <mat-label>Enter your password</mat-label>
@@ -45,12 +40,14 @@
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
                     </mat-form-field>
+
                     <br>
 
                     <mat-form-field appearance="fill">
                         <mat-label>Type</mat-label>
                         <mat-select [(value)]="selectedValue">
-                            <mat-option [(value)]="selectedValue" *ngFor="let type of types">{{ selectedValue }}</mat-option>
+                            <mat-option value="client">Client</mat-option>
+                            <mat-option value="seller">Seller</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <br>
@@ -90,17 +87,9 @@
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
                     </mat-form-field>
-
-
                     <button mat-button color="warn" (click)="forgotPassword()">Forgot your password?</button>
                     <button mat-raised-button class="button-save" [disabled]="!signInForm.valid">Save</button>
-
-
                 </form>
-
-
-
-
 
             </mat-tab>
         </mat-tab-group>
