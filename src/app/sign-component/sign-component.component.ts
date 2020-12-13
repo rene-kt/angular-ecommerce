@@ -47,8 +47,8 @@ export class SignComponentComponent implements OnInit {
         this.isLoading = false;
         this.confirmationSignUp();
       },(error) =>{
+        this.invalidForm();
         this.isLoading = false;
-        console.log(error);
       }
       
 
@@ -79,6 +79,26 @@ export class SignComponentComponent implements OnInit {
         duration: 3000,
       }
     );
+  }
+
+  errorSignUp() {
+    this._snackBar.open(
+      'This email/cpf are being used by other user',
+      'I got it',
+
+
+      {
+        duration: 10000,
+          panelClass: ['purple-snackbar']
+
+      }
+    );
+  }
+
+  invalidForm(){
+    this.signUpForm.controls['email'].setErrors({'incorrect': true});
+    this.signUpForm.controls['cpf'].setErrors({'incorrect': true});
+    this.errorSignUp();
   }
 
 

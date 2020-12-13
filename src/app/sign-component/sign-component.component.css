@@ -18,7 +18,7 @@
     margin-top: 1%;
     background: var(--white);
     width: 80%;
-    height: 90%;
+    height: 95%;
     border-radius: 15px;
 }
 
@@ -32,6 +32,7 @@
 }
 
 .container-form {
+    height: 100%;
     display: block;
     justify-content: center;
     align-items: center;
@@ -68,4 +69,16 @@ mat-form-field {
     color: #fff;
     margin-left: 5%;
     float: right;
+}
+
+.uploader-status {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.uploader-status ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+    stroke: #9006EE;
 }
