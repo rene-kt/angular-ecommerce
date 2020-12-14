@@ -26,5 +26,9 @@ export class StorageServiceService {
     }
 
   }
+
+  logout(){
+    this.setLocalUser(null);
+  }
   constructor() { }
 }

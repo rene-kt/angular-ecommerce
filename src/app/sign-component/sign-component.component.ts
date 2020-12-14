@@ -1,11 +1,12 @@
+import { StorageServiceService } from './../services/storage-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SignUpUser } from './../models/users/signup-user';
 import { SignServiceService } from './../services/sign-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { LoginUser } from '../models/users/login-user';
-import { HttpResponse } from '@angular/common/http';
-
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-sign-component',
@@ -13,6 +14,13 @@ import { HttpResponse } from '@angular/common/http';
   styleUrls: ['./sign-component.component.css'],
 })
 export class SignComponentComponent implements OnInit {
+  constructor(
+    private signService: SignServiceService,
+    private _snackBar: MatSnackBar,
+    private router: Router,
+    private storage: StorageServiceService
+  ) {}
+
   selectedValue: string;
   // hide password
   hide = true;
@@ -21,12 +29,12 @@ export class SignComponentComponent implements OnInit {
   isLoading = false;
   loginUser = {} as LoginUser;
 
-
   signUpForm = new FormGroup({
     name: new FormControl(''),
     email: new FormControl(''),
-    password: new FormControl('')
+    password: new FormControl(''),
   });
+
 
   signUp() {
     this.isLoading = true;
@@ -40,14 +48,12 @@ export class SignComponentComponent implements OnInit {
     }
   }
 
-
-  parseFormInfoIntoSignUpObject(){
+  parseFormInfoIntoSignUpObject() {
     this.signUpUser.name = this.signUpForm.value.name;
     this.signUpUser.email = this.signUpForm.value.email;
     this.signUpUser.password = this.signUpForm.value.password;
-
   }
-  signUpAsSeller(){
+  signUpAsSeller() {
     this.signService.signUpSeller(this.signUpUser).subscribe(
       () => {
         this.isLoading = false;
@@ -59,22 +65,20 @@ export class SignComponentComponent implements OnInit {
       }
     );
   }
-  signUpAsClient(){
-  
+  signUpAsClient() {
     this.signService.signUpClient(this.signUpUser).subscribe(
       () => {
         this.isLoading = false;
         this.confirmationSignUp();
       },
       (error) => {
-        console.log(error);
         this.invalidForm();
         this.isLoading = false;
       }
     );
   }
 
-   confirmationSignUp() {
+  confirmationSignUp() {
     this._snackBar.open(
       'Your profile was created',
       'Dismiss',
@@ -111,32 +115,26 @@ export class SignComponentComponent implements OnInit {
     this.isLoading = true;
     this.parseFormInfoIntoLoginObject();
 
-    if(this.selectedValue === 'client'){
-      this.loginAsClient();
-    }else{
-      //  this.loginAsSeller();
+    switch (this.selectedValue) {
+      case 'client':
+        this.loginAsClient();
+
+      case 'seller;':
     }
-
   }
 
+  loginAsClient() {
+   this.signService.login(this.loginUser);
 
-  loginAsClient(){
-    this.isLoading=true;
-    this.signService.login(this.loginUser);
-    this.isLoading=false;
-
+    this.isLoading = false;
   }
 
-
-  
-
-  emailOrPasswordIncorrect(){
+  emailOrPasswordIncorrect() {
     this.loginForm.controls['email'].setErrors({ incorrect: true });
     this.loginForm.controls['password'].setErrors({ incorrect: true });
     this.errorLogin();
   }
 
-  
   errorLogin() {
     this._snackBar.open(
       'Email or password incorrect',
@@ -149,7 +147,7 @@ export class SignComponentComponent implements OnInit {
     );
   }
 
-  parseFormInfoIntoLoginObject(){
+  parseFormInfoIntoLoginObject() {
     this.loginUser.email = this.loginForm.value.email;
     this.loginUser.password = this.loginForm.value.password;
   }
@@ -159,14 +157,14 @@ export class SignComponentComponent implements OnInit {
     password: new FormControl(''),
   });
 
- 
   forgotPassword() {
     console.log(this.loginForm.value.email);
   }
-  constructor(
-    private signService: SignServiceService,
-    private _snackBar: MatSnackBar
-  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.storage.logout();
+  }
+
+ 
+     
 }

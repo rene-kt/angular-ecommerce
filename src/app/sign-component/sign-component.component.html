@@ -104,8 +104,8 @@
                     </div>
                 </form>
 
-                <div class="uploader-status">
-                    <mat-spinner *ngIf="isLoading"></mat-spinner>
+                <div *ngIf="isLoading" class="uploader-status">
+                    <mat-spinner></mat-spinner>
                 </div>
 
 
