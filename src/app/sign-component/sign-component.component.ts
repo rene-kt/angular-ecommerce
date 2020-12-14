@@ -4,6 +4,7 @@ import { SignServiceService } from './../services/sign-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { LoginUser } from '../models/users/login-user';
+import { HttpResponse } from '@angular/common/http';
 
 
 @Component({
@@ -113,36 +114,21 @@ export class SignComponentComponent implements OnInit {
     if(this.selectedValue === 'client'){
       this.loginAsClient();
     }else{
-      this.loginAsSeller();
+      //  this.loginAsSeller();
     }
 
   }
 
-  loginAsSeller(){
-    
-    this.signService.login(this.loginUser).subscribe(() =>{
-      // abrir pagina do seller
-      this.isLoading = false;
-      console.log('deu certo');
-    }, (error) =>{
-      this.emailOrPasswordIncorrect();
-      this.isLoading = false;
 
-    })
-  }
   loginAsClient(){
-    
-    this.signService.login(this.loginUser).subscribe(() =>{
-      // abrir pagina do client
-      console.log('deu certo');
-      this.isLoading = false;
+    this.isLoading=true;
+    this.signService.login(this.loginUser);
+    this.isLoading=false;
 
-    }, (error) =>{
-      this.emailOrPasswordIncorrect();
-      this.isLoading = false;
-
-    })
   }
+
+
+  
 
   emailOrPasswordIncorrect(){
     this.loginForm.controls['email'].setErrors({ incorrect: true });
