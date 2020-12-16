@@ -33,6 +33,7 @@ import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confi
 import { EditProductDialogComponent } from './dialogs/edit-product-dialog/edit-product-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -70,6 +71,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatDialogModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatTooltipModule,
     MatProgressSpinnerModule,
     RouterModule.forRoot([
       {

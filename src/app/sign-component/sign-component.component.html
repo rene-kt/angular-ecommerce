@@ -92,8 +92,8 @@
 
                     <div *ngIf="!isLoading">
 
-                        <button mat-button color="warn" (click)="forgotPassword()">Forgot your password?</button>
-                        <button mat-raised-button class="button-save" [disabled]="!loginForm.valid">Save</button>
+                        <button mat-button color="warn" [disabled]="!loginForm.valid && loginForm.pristine" (click)="forgotPassword()" #tooltip="matTooltip" matTooltip="Just fill out the email field and click here to send a new password to your email" matTooltipHideDelay="100000">Forgot your password?</button>
+                        <button mat-raised-button class="button-save" [disabled]="!loginForm.valid && loginForm.pristine">Save</button>
 
                     </div>
                 </form>

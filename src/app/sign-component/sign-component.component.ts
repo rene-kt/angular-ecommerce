@@ -1,3 +1,4 @@
+import { EmailDTO } from './../models/emailDTO';
 import { StorageServiceService } from './../services/storage-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SignUpUser } from './../models/users/signup-user';
@@ -26,6 +27,8 @@ export class SignComponentComponent implements OnInit {
   signUpUser = {} as SignUpUser;
   isLoading = false;
   loginUser = {} as LoginUser;
+  emailDTO = {} as EmailDTO;
+  emailIsInvalid = true;
 
   signUpForm = new FormGroup({
     name: new FormControl(''),
@@ -55,6 +58,8 @@ export class SignComponentComponent implements OnInit {
       () => {
         this.isLoading = false;
         this.confirmationSignUp();
+        this.clearFieldsSignUp();
+
       },
       (error) => {
         this.duplicateEmail();
@@ -67,6 +72,7 @@ export class SignComponentComponent implements OnInit {
       () => {
         this.isLoading = false;
         this.confirmationSignUp();
+        this.clearFieldsSignUp();
       },
       (error) => {
         this.duplicateEmail();
@@ -147,8 +153,29 @@ export class SignComponentComponent implements OnInit {
     password: new FormControl(''),
   });
 
+
   forgotPassword() {
-    console.log(this.loginForm.value.email);
+    
+    this.isLoading = true;
+    this.emailDTO.email = this.loginForm.value.email;
+    this.signService.forgotPassword(this.emailDTO).subscribe(() => {
+      this.isLoading = false;
+      this.snackBarEmailSent();
+    })
+  }
+
+ 
+
+  snackBarEmailSent() {
+    this._snackBar.open(
+      'A new password is being sent to your email. Please, check your mail out in a few seconds',
+      'I got it',
+
+      {
+        duration: 5000,
+        panelClass: ['purple-snackbar'],
+      }
+    );
   }
 
   ngOnInit(): void {

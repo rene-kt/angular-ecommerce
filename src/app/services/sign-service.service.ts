@@ -1,3 +1,4 @@
+import { EmailDTO } from './../models/emailDTO';
 import { Router } from '@angular/router';
 import { StorageServiceService } from './storage-service.service';
 import { SignUpUser } from './../models/users/signup-user';
@@ -58,6 +59,14 @@ export class SignServiceService {
     return this.httpClient.post<any>(
       this.apiUrl + '/create/client',
       JSON.stringify(client),
+      this.httpOptions
+    );
+  }
+
+  forgotPassword(email: EmailDTO){
+    return this.httpClient.post<any>(
+      this.apiUrl + '/forgot',
+      JSON.stringify(email),
       this.httpOptions
     );
   }
