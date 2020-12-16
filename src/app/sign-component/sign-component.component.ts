@@ -57,7 +57,7 @@ export class SignComponentComponent implements OnInit {
         this.confirmationSignUp();
       },
       (error) => {
-        this.invalidForm();
+        this.duplicateEmail();
         this.isLoading = false;
       }
     );
@@ -69,7 +69,7 @@ export class SignComponentComponent implements OnInit {
         this.confirmationSignUp();
       },
       (error) => {
-        this.invalidForm();
+        this.duplicateEmail();
         this.isLoading = false;
       }
     );
@@ -87,6 +87,10 @@ export class SignComponentComponent implements OnInit {
     );
   }
 
+  duplicateEmail() {
+    this.signUpForm.controls['email'].setErrors({ incorrect: true });
+    this.errorSignUp();
+  }
   errorSignUp() {
     this._snackBar.open(
       'This email is being used by other user',
@@ -99,10 +103,6 @@ export class SignComponentComponent implements OnInit {
     );
   }
 
-  invalidForm() {
-    this.signUpForm.controls['email'].setErrors({ incorrect: true });
-    this.errorSignUp();
-  }
 
   clearFieldsSignUp() {
     this.signUpForm.reset();
@@ -122,10 +122,10 @@ export class SignComponentComponent implements OnInit {
   emailOrPasswordIncorrect() {
     this.loginForm.controls['email'].setErrors({ incorrect: true });
     this.loginForm.controls['password'].setErrors({ incorrect: true });
-    this.errorLogin();
+    this.snackBarErrorLogin();
   }
 
-  errorLogin() {
+  snackBarErrorLogin() {
     this._snackBar.open(
       'Email or password incorrect',
       'I got it',

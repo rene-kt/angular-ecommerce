@@ -1,4 +1,3 @@
-import { ErrorServiceService } from './error-service.service';
 import { Router } from '@angular/router';
 import { StorageServiceService } from './storage-service.service';
 import { SignUpUser } from './../models/users/signup-user';
