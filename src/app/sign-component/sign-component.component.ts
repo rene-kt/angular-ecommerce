@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { LoginUser } from '../models/users/login-user';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-sign-component',
@@ -17,8 +16,7 @@ export class SignComponentComponent implements OnInit {
   constructor(
     private signService: SignServiceService,
     private _snackBar: MatSnackBar,
-    private router: Router,
-    private storage: StorageServiceService
+    private storage: StorageServiceService,
   ) {}
 
   selectedValue: string;
@@ -34,7 +32,6 @@ export class SignComponentComponent implements OnInit {
     email: new FormControl(''),
     password: new FormControl(''),
   });
-
 
   signUp() {
     this.isLoading = true;
@@ -115,17 +112,10 @@ export class SignComponentComponent implements OnInit {
     this.isLoading = true;
     this.parseFormInfoIntoLoginObject();
 
-    switch (this.selectedValue) {
-      case 'client':
-        this.loginAsClient();
-
-      case 'seller;':
-    }
-  }
-
-  loginAsClient() {
-   this.signService.login(this.loginUser);
-
+    this.signService.login(this.loginUser).subscribe(
+      (data) => this.signService.userStorageFromToken(data.headers.get('Authorization')),
+      (error) => this.emailOrPasswordIncorrect()
+    );
     this.isLoading = false;
   }
 
@@ -164,7 +154,4 @@ export class SignComponentComponent implements OnInit {
   ngOnInit(): void {
     this.storage.logout();
   }
-
- 
-     
 }
