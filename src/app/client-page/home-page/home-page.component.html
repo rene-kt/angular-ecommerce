@@ -1,4 +1,5 @@
-<div class="header"> NOME DO CLIENT </div>
+<div class="header" *ngIf="isLoading"> Loading... </div>
+<div class="header" *ngIf="!isLoading"> {{client?.name}} </div>
 
 
 <div class="home-cards">
@@ -7,7 +8,7 @@
     <div class="orders">
         <div class="content">
             <h4>Orders</h4>
-            <h2>20</h2>
+            <h2>{{client?.numberOfBuys}}</h2>
         </div>
 
     </div>
@@ -15,14 +16,14 @@
     <div class="money">
         <div class="content">
             <h4>Wasted</h4>
-            <h2>R$405.60</h2>
+            <h2>R$ {{client?.howMuchMoneyThisClientHasSpent}}</h2>
         </div>
     </div>
 
     <div class="wishlist">
         <div class="content">
             <h4>Wishlist</h4>
-            <h2>26</h2>
+            <h2>{{client?.productsWished.length}}</h2>
         </div>
 
     </div>

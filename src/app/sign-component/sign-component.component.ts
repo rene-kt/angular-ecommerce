@@ -112,6 +112,7 @@ export class SignComponentComponent implements OnInit {
 
   clearFieldsSignUp() {
     this.signUpForm.reset();
+    this.signUpForm.clearValidators();
   }
 
   login() {
