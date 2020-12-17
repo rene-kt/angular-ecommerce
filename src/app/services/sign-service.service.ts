@@ -9,7 +9,7 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LocalUser } from '../models/local-user';
+import { LocalUser } from '../models/users/local-user';
 import jwt_decode from 'jwt-decode';
 @Injectable({
   providedIn: 'root',

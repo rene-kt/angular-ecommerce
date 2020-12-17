@@ -1,14 +1,16 @@
-import { UpdatedClient } from './../models/updated/client-updated';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LocalUser } from '../models/users/local-user';
 import { Client } from '../models/users/client';
+import { Seller } from '../models/users/seller';
 import { StorageServiceService } from './storage-service.service';
+import { UserRanking } from '../models/users/user-ranking';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class ClientServiceService {
+export class RankingServerService {
+
   constructor(
     private httpClient: HttpClient,
     private storage: StorageServiceService
@@ -16,7 +18,9 @@ export class ClientServiceService {
 
   userStorage = {} as LocalUser;
   apiUrl = 'https://renejr-ecommerce.herokuapp.com';
-  client = {} as Client;
+
+  rankingClient: UserRanking[];
+  rankingSeller: UserRanking[];
 
   httpAuthorization = {
     headers: new HttpHeaders({
@@ -24,14 +28,18 @@ export class ClientServiceService {
       Authorization: 'Bearer ' + this.storage.getLocalUser().token,
     }),
   };
-  returnClient(): Promise<Client> {
+
+  returnRankingClient(): Promise<UserRanking[]> {
     return this.httpClient
-      .get<Client>(this.apiUrl + '/client', this.httpAuthorization)
+      .get<UserRanking[]>(this.apiUrl + '/clients/ranking', this.httpAuthorization)
       .toPromise()
-      .then((res) => (this.client = res));
+      .then((res) => (this.rankingClient = res));
   }
 
-  updateClient(client: UpdatedClient){
-    return this.httpClient.put<any>(this.apiUrl + '/update/client',client, this.httpAuthorization);
+  returnRankingSeller(): Promise<UserRanking[]> {
+    return this.httpClient
+      .get<UserRanking[]>(this.apiUrl + '/sellers/ranking', this.httpAuthorization)
+      .toPromise()
+      .then((res) => (this.rankingSeller = res));
   }
 }

@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SignUpUser } from './../models/users/signup-user';
 import { SignServiceService } from './../services/sign-service.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginUser } from '../models/users/login-user';
 import { Router } from '@angular/router';
 
@@ -31,9 +31,9 @@ export class SignComponentComponent implements OnInit {
   emailIsInvalid = true;
 
   signUpForm = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('', Validators.required),
     email: new FormControl(''),
-    password: new FormControl(''),
+    password: new FormControl('', Validators.required),
   });
 
   signUp() {
@@ -112,7 +112,10 @@ export class SignComponentComponent implements OnInit {
 
   clearFieldsSignUp() {
     this.signUpForm.reset();
-    this.signUpForm.clearValidators();
+
+    Object.keys(this.signUpForm.controls).forEach(key => {
+      this.signUpForm.get(key).setErrors(null) ;
+    });
   }
 
   login() {

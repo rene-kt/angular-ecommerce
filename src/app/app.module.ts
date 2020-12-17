@@ -81,7 +81,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
           { path: 'home', component: HomePageComponent },
           { path: 'products', component: ProductsPageComponent },
           { path: 'wishlist', component: WishlistPageComponent },
-          { path: 'profile', component: ProfilePageComponentSeller },
+          { path: 'profile', component: ProfilePageComponent },
           { path: 'orders', component: OrderPageComponent },
           { path: '', redirectTo: 'home', pathMatch: 'full' },
         ],

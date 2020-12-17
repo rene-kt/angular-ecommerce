@@ -8,7 +8,8 @@
     <div class="orders">
         <div class="content">
             <h4>Orders</h4>
-            <h2>{{client?.numberOfBuys}}</h2>
+            <h2 *ngIf="isLoading">Loading...</h2>
+            <h2 *ngIf="!isLoading">{{client?.numberOfBuys}}</h2>
         </div>
 
     </div>
@@ -16,14 +17,16 @@
     <div class="money">
         <div class="content">
             <h4>Wasted</h4>
-            <h2>R$ {{client?.howMuchMoneyThisClientHasSpent}}</h2>
+            <h2 *ngIf="isLoading">Loading...</h2>
+            <h2 *ngIf="!isLoading">R$ {{client?.howMuchMoneyThisClientHasSpent}}</h2>
         </div>
     </div>
 
     <div class="wishlist">
         <div class="content">
             <h4>Wishlist</h4>
-            <h2>{{client?.productsWished.length}}</h2>
+            <h2 *ngIf="isLoading">Loading...</h2>
+            <h2 *ngIf="!isLoading">{{client?.productsWished.length}}</h2>
         </div>
 
     </div>
@@ -36,23 +39,9 @@
 
         <div class="content">
             <h2>Client</h2>
-            <ul>
-
-                <li><i class="icon"></i> 1 - Client 1</li>
-                <li><i class="icon"></i> 2 - Client 2</li>
-                <li><i class="icon"></i> 3 - Client 3</li>
-                <li><i class="icon"></i> 4 - Client 4</li>
-                <li><i class="icon"></i> 5 - Client 5</li>
-                <li><i class="icon"></i> 6 - Client 6</li>
-                <li><i class="icon"></i> 7 - Client 7</li>
-                <li><i class="icon"></i> 8 - Client 8</li>
-                <li><i class="icon"></i> 9 - Client 9</li>
-                <li><i class="icon"></i> 10 - Client 10</li>
-
-
-
+            <ul *ngFor="let client of rankingClients; let i = index">
+                <li><i class="icon"></i> {{i + 1}} - {{client.name}} - R$ {{client.money}}</li>
             </ul>
-
         </div>
     </div>
 
@@ -61,16 +50,9 @@
 
         <div class="content">
             <h2>Seller</h2>
-            <ul>
-
-                <li><img src="../../../assets/gold.png" class="icon"> 1 - Client 1</li>
-                <li><img src="../../../assets/silver.png" class="icon"> 2 - Client 2</li>
-                <li><img src="../../../assets/bronze.png" class="icon"> 3 - Client 3</li>
-                <li><i class="icon"></i> 4 - Client 4</li>
-                <li><i class="icon"></i> 5 - Client 5</li>
-
+            <ul *ngFor="let seller of rankingSeller; let i = index">
+                <li><i class="icon"></i> {{i + 1}} - {{seller.name}} - R$ {{seller.money}}</li>
             </ul>
-
         </div>
     </div>
 </div>

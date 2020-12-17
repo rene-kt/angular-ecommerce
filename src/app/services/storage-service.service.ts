@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { STORAGE_KEYS } from '../config/storage.config';
-import { LocalUser } from '../models/local-user';
+import { LocalUser } from '../models/users/local-user';
 
 @Injectable({
   providedIn: 'root'
