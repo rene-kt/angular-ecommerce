@@ -1,19 +1,22 @@
 <div class="header"> Products page </div>
 
-<mat-paginator [length]="100" [pageSize]="9">
+<mat-paginator *ngIf="!isLoading" [length]="products.length" [pageSize]="9">
 
 </mat-paginator>
 
-<div class="cards">
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<div class="cards" *ngIf="!isLoading">
 
     <mat-card class="card" *ngFor="let product of products">
         <mat-card-header class="header">
-            <mat-card-title>{{ product.name }} </mat-card-title>
-            <mat-card-subtitle>Nome do vendedor</mat-card-subtitle>
+            <mat-card-title>{{ product.name}} </mat-card-title>
+            <mat-card-title> R$ {{product.price}} </mat-card-title>
+            <mat-card-subtitle>{{ product.productOwner.name }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
             <p>
-                Descrição
+                {{product.description}}
             </p>
         </mat-card-content>
         <mat-card-actions class="buttons">

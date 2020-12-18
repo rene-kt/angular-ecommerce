@@ -1,3 +1,4 @@
+import { ProductServiceService } from './../../services/product-service.service.';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -14,18 +15,15 @@ export interface Product {
   styleUrls: ['./products-page.component.css'],
 })
 export class ProductsPageComponentSeller implements OnInit {
-  constructor(private _snackBar: MatSnackBar, private dialog: MatDialog) {}
+  constructor(private _snackBar: MatSnackBar, private dialog: MatDialog, private productService: ProductServiceService) {}
+  products: Product[];
+  isLoading = true;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
 
-  products: Product[] = [
-    {
-      name: 'Photos',
-    },
-    {
-      name: 'Recipes',
-    },
-  ];
+  
+  }
+
 
   openRemoveDialog(productName: string) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent);

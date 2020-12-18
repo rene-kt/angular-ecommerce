@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from 'src/app/dialogs/confirmation-dialog/confirmation-dialog.component';
-
-export interface Product {
-  name: string;
-}
+import { Product } from 'src/app/models/product';
+import { ProductServiceService } from 'src/app/services/product-service.service.';
 
 @Component({
   selector: 'app-products-page',
@@ -13,18 +11,20 @@ export interface Product {
   styleUrls: ['./products-page.component.css'],
 })
 export class ProductsPageComponent implements OnInit {
-  constructor(private _snackBar: MatSnackBar, private dialog: MatDialog) {}
+  constructor(private _snackBar: MatSnackBar, private dialog: MatDialog, private productService: ProductServiceService) {}
+  products: Product[];
+  isLoading = true;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
 
-  products: Product[] = [
-    {
-      name: 'Photos',
-    },
-    {
-      name: 'Recipes',
-    },
-  ];
+    this.productService.returnUnsoldProducts().then(()=>{
+      this.products = this.productService.products;
+      this.isLoading = false;
+    })
+
+  }
+
+  
 
   openBuyDialog(productName: string){
     const dialogRef = this.dialog.open(ConfirmationDialogComponent);
