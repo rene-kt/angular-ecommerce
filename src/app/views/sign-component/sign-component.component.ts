@@ -6,7 +6,6 @@ import { SignServiceService } from '../../services/sign-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginUser } from '../../models/users/login-user';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-component',

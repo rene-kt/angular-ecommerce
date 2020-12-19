@@ -1,10 +1,10 @@
 import { ProductServiceService } from 'src/app/services/product-service.service.';
-import { WishlistServiceService } from './../../services/wishlist-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ConfirmationDialogComponent } from 'src/app/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { Product } from 'src/app/models/product';
+import { WishlistServiceService } from 'src/app/services/wishlist-service.service';
+import { ConfirmationDialogComponent } from '../../dialogs/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-wishlist-page',

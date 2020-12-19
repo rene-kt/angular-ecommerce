@@ -1,9 +1,9 @@
-import { UserRanking } from './../../models/users/user-ranking';
-import { RankingServerService } from './../../services/ranking-server.service';
-import { Client } from './../../models/users/client';
+
 import { Component, OnInit } from '@angular/core';
 import { ClientServiceService } from 'src/app/services/client-service.service';
-import { Seller } from 'src/app/models/users/seller';
+import { Client } from 'src/app/models/users/client';
+import { UserRanking } from 'src/app/models/users/user-ranking';
+import { RankingServerService } from 'src/app/services/ranking-server.service';
 
 @Component({
   selector: 'app-home-page',

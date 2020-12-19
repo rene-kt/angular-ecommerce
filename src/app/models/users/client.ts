@@ -1,4 +1,5 @@
-import { Product } from './../../seller-page/products-page/products-page.component';
+import { Product } from "../product";
+
 export interface Client {
     id: string;
     name: string;

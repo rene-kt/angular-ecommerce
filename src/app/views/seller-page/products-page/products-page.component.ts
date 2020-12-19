@@ -1,9 +1,9 @@
-import { ProductServiceService } from './../../services/product-service.service.';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ConfirmationDialogComponent } from 'src/app/dialogs/confirmation-dialog/confirmation-dialog.component';
-import { EditProductDialogComponent } from 'src/app/dialogs/edit-product-dialog/edit-product-dialog.component';
+import { ProductServiceService } from 'src/app/services/product-service.service.';
+import { ConfirmationDialogComponent } from '../../dialogs/confirmation-dialog/confirmation-dialog.component';
+import { EditProductDialogComponent } from '../../dialogs/edit-product-dialog/edit-product-dialog.component';
 
 export interface Product {
   name: string;

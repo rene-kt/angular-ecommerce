@@ -4,5 +4,5 @@ export interface Seller {
     email: string;
     password: string;
     numberOfSells: number;
-    moneySold: number;
+    howMuchMoneyThisSellerHasSold: number;
 }

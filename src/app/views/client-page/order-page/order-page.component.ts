@@ -1,6 +1,6 @@
-import { OrderServiceService } from './../../services/order-service.service.';
-import { Order } from './../../models/order';
 import { Component, OnInit } from '@angular/core';
+import { Order } from 'src/app/models/order';
+import { OrderServiceService } from 'src/app/services/order-service.service.';
 
 export interface Section {
   name: string;

@@ -1,9 +1,9 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UpdatedClient } from './../../models/updated/client-updated';
 import { ClientServiceService } from 'src/app/services/client-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Client } from 'src/app/models/users/client';
+import { UpdatedUser } from 'src/app/models/updated/user-updated';
 
 @Component({
   selector: 'app-profile-page',
@@ -16,7 +16,7 @@ export class ProfilePageComponent implements OnInit {
   // hide password
   hide = true;
   client = {} as Client;
-  updatedClient = {} as UpdatedClient;
+  updatedClient = {} as UpdatedUser;
 
   
 

@@ -1,15 +1,15 @@
-import { UpdatedUser } from '../models/updated/user-updated';
+import { UpdatedUser } from './../models/updated/user-updated';
+import { Seller } from './../models/users/seller';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LocalUser } from '../models/users/local-user';
-import { Client } from '../models/users/client';
 import { StorageServiceService } from './storage-service.service';
 import { GlobalAPI } from './api.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ClientServiceService {
+export class SellerServiceService {
   constructor(
     private httpClient: HttpClient,
     private storage: StorageServiceService
@@ -17,7 +17,7 @@ export class ClientServiceService {
 
   userStorage = {} as LocalUser;
   apiUrl = GlobalAPI.apiUrl;
-  client = {} as Client;
+  seller = {} as Seller;
 
   httpAuthorization = {
     headers: new HttpHeaders({
@@ -25,14 +25,14 @@ export class ClientServiceService {
       Authorization: 'Bearer ' + this.storage.getLocalUser().token,
     }),
   };
-  returnClient(): Promise<Client> {
+  returnSeller(): Promise<Seller> {
     return this.httpClient
-      .get<Client>(this.apiUrl + '/client', this.httpAuthorization)
+      .get<Seller>(this.apiUrl + '/seller', this.httpAuthorization)
       .toPromise()
-      .then((res) => (this.client = res));
+      .then((res) => (this.seller = res));
   }
 
-  updateClient(client: UpdatedUser){
-    return this.httpClient.put<any>(this.apiUrl + '/update/client',client, this.httpAuthorization);
+  updateSeller(seller: UpdatedUser){
+    return this.httpClient.put<any>(this.apiUrl + '/update/seller',seller, this.httpAuthorization);
   }
 }
