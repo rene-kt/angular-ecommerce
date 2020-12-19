@@ -30,6 +30,8 @@ export class OrderPageComponent implements OnInit {
       this._orderByPrice();
     }else if(this.selectedValue === 'name'){
       this._orderByName();
+    }else if(this.selectedValue === 'date'){
+      this._orderByDate();
     }
   }
   _getOrders(){
@@ -47,6 +49,11 @@ export class OrderPageComponent implements OnInit {
 
   _orderByName(){
     this.orders = this.orders.sort((a,b) => (a.productOrder.name > b.productOrder.name) ? 1 : ((b.productOrder.name > a.productOrder.name) ? -1 : 0)); 
+
+  }
+
+  _orderByDate(){
+    this.orders = this.orders.sort((a,b) => (a.instant> b.instant) ? -1 : ((b.instant > a.instant) ? 1 : 0)); 
 
   }
 

@@ -1,3 +1,4 @@
+import { ProductServiceService } from 'src/app/services/product-service.service.';
 import { WishlistServiceService } from './../../services/wishlist-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +13,7 @@ import { Product } from 'src/app/models/product';
 })
 export class WishlistPageComponent implements OnInit {
 
-  constructor(private _snackBar: MatSnackBar, private dialog: MatDialog, private wishlistService: WishlistServiceService) { }
+  constructor(private _snackBar: MatSnackBar, private dialog: MatDialog,private productService: ProductServiceService, private wishlistService: WishlistServiceService) { }
 
   wishlist: Product[];
   selectedValue: string;
@@ -47,19 +48,26 @@ export class WishlistPageComponent implements OnInit {
 
   }
 
-  openBuyDialog(productName: string){
+  
+
+
+
+  openBuyDialog(product: Product){
     const dialogRef = this.dialog.open(ConfirmationDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {
 
       if(result){
-        this.buyProduct(productName, 'Dismiss');
+        this.productService.buyProduct(product.id).subscribe(() =>{
+          this.showSnackBarProductBought(product.name, 'Dismiss');
+          this._getWishlist();
+        })
       }
     });
   
   }
 
-    buyProduct(productName: string, action: string) {
+    showSnackBarProductBought(productName: string, action: string) {
       this._snackBar.open(
         'You have bought the product |' + productName + '|' + 
         " We're sending a confirmation email to your inbox",
