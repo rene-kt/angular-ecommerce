@@ -18,7 +18,6 @@ export class WishlistPageComponent implements OnInit {
   wishlist: Product[];
   selectedValue: string;
   ngOnInit(): void {
-        this.selectedValue = 'price';
 
     this._getWishlist();
   }
