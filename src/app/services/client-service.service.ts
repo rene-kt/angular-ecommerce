@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { LocalUser } from '../models/users/local-user';
 import { Client } from '../models/users/client';
 import { StorageServiceService } from './storage-service.service';
+import { GlobalAPI } from './api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class ClientServiceService {
   ) {}
 
   userStorage = {} as LocalUser;
-  apiUrl = 'https://renejr-ecommerce.herokuapp.com';
+  apiUrl = GlobalAPI.apiUrl;
   client = {} as Client;
 
   httpAuthorization = {

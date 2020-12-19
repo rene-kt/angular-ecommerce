@@ -20,8 +20,8 @@
             </p>
         </mat-card-content>
         <mat-card-actions class="buttons">
-            <button mat-button (click)="addProductInYourWishlistAndShowSnackbar(product.name, 'Undo')"> <i class="fas fa-heart"></i> WISHLIST</button>
-            <button mat-button (click)="openBuyDialog(product.name)"> <i class="fas fa-shopping-cart"></i> BUY</button>
+            <button mat-button (click)="addProductWishlist(product)"> <i class="fas fa-heart"></i> WISHLIST</button>
+            <button mat-button (click)="openBuyDialog(product)"> <i class="fas fa-shopping-cart"></i> BUY</button>
         </mat-card-actions>
     </mat-card>
 

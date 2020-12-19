@@ -7,15 +7,14 @@ import { GlobalAPI } from './api.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ProductServiceService {
+export class WishlistServiceService {
   constructor(
     private httpClient: HttpClient,
     private storage: StorageServiceService
   ) {}
 
   apiUrl = GlobalAPI.apiUrl;
-
-  products: Product[];
+  wishlist: Product[];
 
   httpAuthorization = {
     headers: new HttpHeaders({
@@ -23,15 +22,24 @@ export class ProductServiceService {
       Authorization: 'Bearer ' + this.storage.getLocalUser().token,
     }),
   };
-  async returnUnsoldProducts(): Promise<Product[]> {
+
+    addProductInWishlist(productId: string) {
+
     return this.httpClient
-      .get<Product[]>(this.apiUrl + '/products', this.httpAuthorization)
-      .toPromise()
-      .then((res) => (this.products = res));
+      .post<any>(`${this.apiUrl}/wishlist/${productId}`, null, this.httpAuthorization);
+      
   }
 
-   
+  removeProductFromWishlist(productId: string){
+    return this.httpClient.delete<any>(`${this.apiUrl}/wishlist/${productId}`, this.httpAuthorization);
+  }
 
+  async returnWishlist(): Promise<Product[]> {
+    return this.httpClient
+      .get<Product[]>(this.apiUrl + '/wishlist', this.httpAuthorization)
+      .toPromise()
+      .then((res) => (this.wishlist = res));
+  }
 
   
 }

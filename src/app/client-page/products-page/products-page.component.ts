@@ -1,3 +1,4 @@
+import { WishlistServiceService } from './../../services/wishlist-service.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -11,7 +12,8 @@ import { ProductServiceService } from 'src/app/services/product-service.service.
   styleUrls: ['./products-page.component.css'],
 })
 export class ProductsPageComponent implements OnInit {
-  constructor(private _snackBar: MatSnackBar, private dialog: MatDialog, private productService: ProductServiceService) {}
+  constructor(private _snackBar: MatSnackBar, private dialog: MatDialog,
+    private wishlistService: WishlistServiceService, private productService: ProductServiceService) {}
   products: Product[];
   isLoading = true;
 
@@ -26,14 +28,12 @@ export class ProductsPageComponent implements OnInit {
 
   
 
-  openBuyDialog(productName: string){
+  openBuyDialog(product: Product){
     const dialogRef = this.dialog.open(ConfirmationDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {
 
-
       if(result){
-        this.buyProduct(productName, 'Dismiss');
       }
     });
   
@@ -52,22 +52,43 @@ export class ProductsPageComponent implements OnInit {
     }
   
 
-  removeProductFromWishlist(){
-    console.log('deu certo');
+  removeProductFromWishlist(productId : string){
+    this.wishlistService.removeProductFromWishlist(productId);
   }
 
+  addProductWishlist(product: Product){
+    this.wishlistService.addProductInWishlist(product.id.toString()).subscribe(() =>{
+      this.showSnackBarProductSetAsWished(product, 'Undo')
+    }, (err) =>{
+      if (err.status === 400){
+        this.showSnackBarYouHaveAlreadySetThisProductAsWished(product.name, 'Dismiss');
+      }
+    });
+  }
 
-  // parametro com o produto para mostrar o nome
-  addProductInYourWishlistAndShowSnackbar(productName: string, action: string) {
-    let snackBarRef = this._snackBar.open(
-      'You have added the product |' + productName + '| in your wishlist ',
+  showSnackBarYouHaveAlreadySetThisProductAsWished(productName: string, action: string) {
+     this._snackBar.open(
+      'The product: |' + productName + '| is already in your wishlist ',
       action,
 
       {
         duration: 3000,
       }
     );
-    snackBarRef.onAction().subscribe(()=> this.removeProductFromWishlist());
+  }
+
+
+  // parametro com o produto para mostrar o nome
+  showSnackBarProductSetAsWished(product: Product, action: string) {
+    let snackBarRef = this._snackBar.open(
+      'You have added the product |' + product.name + '| in your wishlist ',
+      action,
+
+      {
+        duration: 3000,
+      }
+    );
+    snackBarRef.onAction().subscribe(()=> this.removeProductFromWishlist(product.id.toString()));
   }
 
 }

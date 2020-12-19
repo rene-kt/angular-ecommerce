@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LocalUser } from '../models/users/local-user';
-import { Client } from '../models/users/client';
-import { Seller } from '../models/users/seller';
+
 import { StorageServiceService } from './storage-service.service';
 import { UserRanking } from '../models/users/user-ranking';
+import { GlobalAPI } from './api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class RankingServerService {
   ) {}
 
   userStorage = {} as LocalUser;
-  apiUrl = 'https://renejr-ecommerce.herokuapp.com';
+  apiUrl = GlobalAPI.apiUrl;
 
   rankingClient: UserRanking[];
   rankingSeller: UserRanking[];
@@ -30,6 +30,9 @@ export class RankingServerService {
   };
 
   returnRankingClient(): Promise<UserRanking[]> {
+
+console.log(this.httpAuthorization.headers);
+
     return this.httpClient
       .get<UserRanking[]>(this.apiUrl + '/clients/ranking', this.httpAuthorization)
       .toPromise()

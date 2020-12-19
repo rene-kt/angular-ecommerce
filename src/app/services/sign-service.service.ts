@@ -11,11 +11,12 @@ import {
 import { Injectable } from '@angular/core';
 import { LocalUser } from '../models/users/local-user';
 import jwt_decode from 'jwt-decode';
+import { GlobalAPI } from './api.service';
 @Injectable({
   providedIn: 'root',
 })
 export class SignServiceService {
-  apiUrl = 'https://renejr-ecommerce.herokuapp.com';
+  apiUrl = GlobalAPI.apiUrl;
   userStorage = {} as LocalUser;
   type: string;
 

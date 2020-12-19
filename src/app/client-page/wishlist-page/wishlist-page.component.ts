@@ -1,7 +1,9 @@
+import { WishlistServiceService } from './../../services/wishlist-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from 'src/app/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-wishlist-page',
@@ -10,9 +12,15 @@ import { ConfirmationDialogComponent } from 'src/app/dialogs/confirmation-dialog
 })
 export class WishlistPageComponent implements OnInit {
 
-  constructor(private _snackBar: MatSnackBar, private dialog: MatDialog) { }
+  constructor(private _snackBar: MatSnackBar, private dialog: MatDialog, private wishlistService: WishlistServiceService) { }
 
+  wishlist: Product[];
   ngOnInit(): void {
+
+    this.wishlistService.returnWishlist().then(() =>{
+      this.wishlist = this.wishlistService.wishlist;
+    })
+
   }
 
   openBuyDialog(productName: string){

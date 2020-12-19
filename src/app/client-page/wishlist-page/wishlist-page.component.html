@@ -2,14 +2,14 @@
 
 <div class="cards">
 
-    <mat-card class="card">
+    <mat-card class="card" *ngFor="let product of wishlist">
         <mat-card-header class="header">
-            <mat-card-title>Nome do produto</mat-card-title>
-            <mat-card-subtitle>Nome do vendedor</mat-card-subtitle>
+            <mat-card-title>{{ product.name }}</mat-card-title>
+            <mat-card-subtitle>{{ product.productOwner.name }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
             <p>
-                Descrição
+                {{product.description}}
             </p>
         </mat-card-content>
         <mat-card-actions class="buttons">
