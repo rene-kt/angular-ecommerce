@@ -1,12 +1,23 @@
 <mat-list>
-    <div mat-subheader>Folders</div>
-    <mat-list-item *ngFor="let folder of folders">
+    <div mat-subheader>Orders</div>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Sort</mat-label>
+        <mat-select [(value)]="selectedValue" (selectionChange)="selectOrder()">
+            <mat-option value="price">Price</mat-option>
+            <mat-option value="name">Name</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-list-item *ngFor="let order of orders">
         <mat-divider></mat-divider>
 
+
         <i class="fas fa-shopping-cart"></i>
-        <div mat-line>{{folder.name}}</div>
-        <div mat-line> {{folder.updated | date}} </div>
-        <div mat-line> R$ 50.00 </div>
+        <div mat-line> Name: {{order.productOrder.name}}</div>
+        <div mat-line> Date: {{order.instant}} </div>
+        <div mat-line> Seller: {{order.productOrder.productOwner.name}} </div>
+        <div mat-line> Price: R${{order.productOrder.price}} </div>
     </mat-list-item>
 
 </mat-list>

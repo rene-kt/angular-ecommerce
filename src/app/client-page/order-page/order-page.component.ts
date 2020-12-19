@@ -1,3 +1,5 @@
+import { OrderServiceService } from './../../services/order-service.service.';
+import { Order } from './../../models/order';
 import { Component, OnInit } from '@angular/core';
 
 export interface Section {
@@ -11,31 +13,43 @@ export interface Section {
   styleUrls: ['./order-page.component.css'],
 })
 export class OrderPageComponent implements OnInit {
-  constructor() {}
+  constructor(private orderService: OrderServiceService) {}
 
-  ngOnInit(): void {}
-  folders: Section[] = [
-    {
-      name: 'Photos',
-      updated: new Date('1/1/16'),
-    },
-    {
-      name: 'Recipes',
-      updated: new Date('1/17/16'),
-    },
-    {
-      name: 'Work',
-      updated: new Date('1/28/16'),
-    },
-  ];
-  notes: Section[] = [
-    {
-      name: 'Vacation Itinerary',
-      updated: new Date('2/20/16'),
-    },
-    {
-      name: 'Kitchen Remodel',
-      updated: new Date('1/18/16'),
-    },
-  ];
-}
+  isLoading: false;
+  orders: Order[];
+  selectedValue: string;
+
+  ngOnInit(): void {
+    this.selectedValue = 'price';
+    this._getOrders();
+  }
+
+
+  selectOrder(){
+    if(this.selectedValue==='price'){
+      this._orderByPrice();
+    }else if(this.selectedValue === 'name'){
+      this._orderByName();
+    }
+  }
+  _getOrders(){
+    this.orderService.returnOrders().then(() =>{
+      this.orders = this.orderService.orders;
+
+      this._orderByPrice();
+      this.isLoading = false;
+    })
+  }
+
+  _orderByPrice(){
+    this.orders = this.orders.sort((a,b) => (a.productOrder.price > b.productOrder.price) ? -1 : ((b.productOrder.price > a.productOrder.price) ? 1 : 0)); 
+  }
+
+  _orderByName(){
+    this.orders = this.orders.sort((a,b) => (a.productOrder.name > b.productOrder.name) ? 1 : ((b.productOrder.name > a.productOrder.name) ? -1 : 0)); 
+
+  }
+
+
+  }
+  
