@@ -19,6 +19,11 @@ export class WishlistPageComponent implements OnInit {
   ngOnInit(): void {
         this.selectedValue = 'price';
 
+    this._getWishlist();
+  }
+
+
+  _getWishlist(){
     this.wishlistService.returnWishlist().then(() =>{
       this.wishlist = this.wishlistService.wishlist;
     })
@@ -67,19 +72,42 @@ export class WishlistPageComponent implements OnInit {
       );
     }
 
-  addProductInYourWishlist(){
-    console.log('deu certo');
+  addProductInYourWishlist(product: Product){
+    this.wishlistService.addProductInWishlist(product.id).subscribe(() =>{
+      this.showSnackBarProductAddedAgain(product, 'Dismiss');
+      this._getWishlist();
+    })
   }
-  removeProductInYourWishlistAndShowSnackbar(productName: string, action: string) {
-    let snackBarRef = this._snackBar.open(
-      'You have removed the product |' + productName + '| from your wishlist ',
+
+  removeProductFromWishlist(product: Product){
+    this.wishlistService.removeProductFromWishlist(product.id).subscribe(() =>{
+      this.showSnackBarProductRemoved(product, 'Undo');
+      this._getWishlist();
+
+    })
+  }
+
+  showSnackBarProductAddedAgain(product: Product, action: string) {
+   this._snackBar.open(
+      'Added the product:|' + product.name + '| in your wishlist again',
       action,
 
       {
         duration: 3000,
       }
     );
-    snackBarRef.onAction().subscribe(()=> this.addProductInYourWishlist());
+  }
+
+  showSnackBarProductRemoved(product: Product, action: string) {
+    let snackBarRef = this._snackBar.open(
+      'You have removed the product |' + product.name + '| from your wishlist ',
+      action,
+
+      {
+        duration: 3000,
+      }
+    );
+    snackBarRef.onAction().subscribe(()=> this.addProductInYourWishlist(product));
   }
 
 }
