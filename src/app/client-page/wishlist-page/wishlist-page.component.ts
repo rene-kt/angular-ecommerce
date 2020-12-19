@@ -15,11 +15,30 @@ export class WishlistPageComponent implements OnInit {
   constructor(private _snackBar: MatSnackBar, private dialog: MatDialog, private wishlistService: WishlistServiceService) { }
 
   wishlist: Product[];
+  selectedValue: string;
   ngOnInit(): void {
+        this.selectedValue = 'price';
 
     this.wishlistService.returnWishlist().then(() =>{
       this.wishlist = this.wishlistService.wishlist;
     })
+
+  }
+
+
+  selectOrder(){
+    if(this.selectedValue==='price'){
+      this._orderByPrice();
+    }else if(this.selectedValue === 'name'){
+      this._orderByName();
+    }
+  }
+  _orderByPrice(){
+    this.wishlist = this.wishlist.sort((a,b) => (a.price > b.price) ? -1 : ((b.price > a.price) ? 1 : 0)); 
+  }
+
+  _orderByName(){
+    this.wishlist = this.wishlist.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)); 
 
   }
 

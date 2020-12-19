@@ -16,6 +16,7 @@ export class ProductsPageComponent implements OnInit {
     private wishlistService: WishlistServiceService, private productService: ProductServiceService) {}
   products: Product[];
   isLoading = true;
+  selectedValue: string;
 
   ngOnInit(): void {
 
@@ -32,6 +33,21 @@ export class ProductsPageComponent implements OnInit {
 
   }
 
+  selectOrder(){
+    if(this.selectedValue==='price'){
+      this._orderByPrice();
+    }else if(this.selectedValue === 'name'){
+      this._orderByName();
+    }
+  }
+  _orderByPrice(){
+    this.products = this.products.sort((a,b) => (a.price > b.price) ? -1 : ((b.price > a.price) ? 1 : 0)); 
+  }
+
+  _orderByName(){
+    this.products = this.products.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)); 
+
+  }
   
 
   openBuyDialog(product: Product){

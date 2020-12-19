@@ -1,14 +1,14 @@
-<mat-list>
-    <div mat-subheader>Orders</div>
+<div mat-subheader>Orders</div>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Sort</mat-label>
-        <mat-select [(value)]="selectedValue" (selectionChange)="selectOrder()">
-            <mat-option value="price">Price</mat-option>
-            <mat-option value="name">Name</mat-option>
-        </mat-select>
-    </mat-form-field>
+<mat-form-field class="container">
+    <mat-label>Sort</mat-label>
+    <mat-select [(value)]="selectedValue" (selectionChange)="selectOrder()">
+        <mat-option value="price">Price</mat-option>
+        <mat-option value="name">Name</mat-option>
+    </mat-select>
+</mat-form-field>
 
+<mat-list *ngIf="!isLoading">
     <mat-list-item *ngFor="let order of orders">
         <mat-divider></mat-divider>
 
