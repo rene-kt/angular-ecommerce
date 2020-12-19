@@ -1,11 +1,11 @@
-import { EmailDTO } from './../models/emailDTO';
-import { StorageServiceService } from './../services/storage-service.service';
+import { EmailDTO } from '../../models/emailDTO';
+import { StorageServiceService } from '../../services/storage-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SignUpUser } from './../models/users/signup-user';
-import { SignServiceService } from './../services/sign-service.service';
+import { SignUpUser } from '../../models/users/signup-user';
+import { SignServiceService } from '../../services/sign-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginUser } from '../models/users/login-user';
+import { LoginUser } from '../../models/users/login-user';
 import { Router } from '@angular/router';
 
 @Component({

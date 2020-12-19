@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ClientPageComponent } from './client-page/client-page.component';
 import { RouterModule } from '@angular/router';
 import { SellerPageComponent } from './seller-page/seller-page.component';
-import { SignComponentComponent } from './sign-component/sign-component.component';
+import { SignComponentComponent } from './views/sign-component/sign-component.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
