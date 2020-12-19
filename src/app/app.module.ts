@@ -34,6 +34,7 @@ import { ProductsPageComponentSeller } from './views/seller-page/products-page/p
 import { ProfilePageComponentSeller } from './views/seller-page/profile-page/profile-page.component';
 import { SellerPageComponent } from './views/seller-page/seller-page.component';
 import { SellsPageComponent } from './views/seller-page/sells-page/sells-page.component';
+import { CreateProductDialogComponent } from './views/dialogs/create-product-dialog/create-product-dialog.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { SellsPageComponent } from './views/seller-page/sells-page/sells-page.co
     SellsPageComponent,
     ConfirmationDialogComponent,
     EditProductDialogComponent,
+    CreateProductDialogComponent,
   ],
   imports: [
     BrowserModule,

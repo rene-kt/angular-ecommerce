@@ -1,13 +1,11 @@
+import { CreateProductDialogComponent } from './../../dialogs/create-product-dialog/create-product-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Product } from 'src/app/models/product';
 import { ProductServiceService } from 'src/app/services/product-service.service.';
 import { ConfirmationDialogComponent } from '../../dialogs/confirmation-dialog/confirmation-dialog.component';
 import { EditProductDialogComponent } from '../../dialogs/edit-product-dialog/edit-product-dialog.component';
-
-export interface Product {
-  name: string;
-}
 
 @Component({
   selector: 'app-products-page',
@@ -21,16 +19,34 @@ export class ProductsPageComponentSeller implements OnInit {
 
   ngOnInit(): void {
 
-  
+    this._getOwnProducts();
+  }
+
+  _getOwnProducts(){
+    this.productService.returnOwnProducts().then(() =>{
+      this.products = this.productService.ownProducts;
+      this.isLoading = false;
+    })
   }
 
 
+
+  openSaveDialog(){
+    const dialogRef = this.dialog.open(CreateProductDialogComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this._getOwnProducts();
+        this.showSnackBarProductCreated('Dismiss');
+      }
+    });
+  }
   openRemoveDialog(productName: string) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.removeProduct(productName, 'Dismiss');
+        this.showSnackBarProductRemoved(productName, 'Dismiss');
       }
     });
   }
@@ -41,12 +57,23 @@ export class ProductsPageComponentSeller implements OnInit {
     
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.editProduct(productName, 'Dismiss');
+        this.showSnackBarProductEdited(productName, 'Dismiss');
       }
     });
   }
 
-  editProduct(productName: string, action: string) {
+  showSnackBarProductCreated(action: string) {
+    this._snackBar.open(
+      'You have created a new product',
+      action,
+
+      {
+        duration: 3000,
+      }
+    );
+  }
+
+  showSnackBarProductEdited(productName: string, action: string) {
     this._snackBar.open(
       'You have edited the product |' + productName + '| ',
       action,
@@ -57,7 +84,7 @@ export class ProductsPageComponentSeller implements OnInit {
     );
   }
 
-  removeProduct(productName: string, action: string) {
+  showSnackBarProductRemoved(productName: string, action: string) {
     this._snackBar.open(
       'You have removed the product |' + productName + '| ',
       action,

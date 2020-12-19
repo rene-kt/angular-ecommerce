@@ -1,11 +1,13 @@
 <div class="header"> Products page </div>
 
 
-<mat-paginator [length]="100" [pageSize]="9">
+<mat-paginator [length]="products?.length" [pageSize]="9">
 
 </mat-paginator>
+<button mat-fab class="add-button" (click)="openSaveDialog()">
+        <i class="fas fa-plus"></i>
+    </button>
 
-<h2>Your products</h2>
 
 <div class="cards">
 
@@ -13,11 +15,13 @@
     <mat-card class="card" *ngFor="let product of products">
         <mat-card-header class="header">
             <mat-card-title>{{ product.name }} </mat-card-title>
-            <mat-card-subtitle>UNSOLD</mat-card-subtitle>
+            <mat-card-title>R$ {{ product.price }} </mat-card-title>
+            <mat-card-subtitle>{{ product.hasBeenSold }}</mat-card-subtitle>
+
         </mat-card-header>
         <mat-card-content>
             <p>
-                Descrição
+                {{product.description}}
             </p>
         </mat-card-content>
         <mat-card-actions class="buttons">

@@ -1,3 +1,4 @@
+import { ProductDTO } from './../models/productDTO';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StorageServiceService } from './storage-service.service';
@@ -16,6 +17,7 @@ export class ProductServiceService {
   apiUrl = GlobalAPI.apiUrl;
 
   products: Product[];
+  ownProducts: Product[];
 
   httpAuthorization = {
     headers: new HttpHeaders({
@@ -30,9 +32,26 @@ export class ProductServiceService {
       .then((res) => (this.products = res));
   }
 
+  async returnOwnProducts(): Promise<Product[]> {
+    return this.httpClient
+      .get<Product[]>(this.apiUrl + '/ownproducts', this.httpAuthorization)
+      .toPromise()
+      .then((res) => (this.ownProducts = res));
+  }
 
+  createProduct(product: ProductDTO){
+    return this.httpClient.post<any>(`${this.apiUrl}/product`, product, this.httpAuthorization)
+  }
+
+  updateProduct(product: ProductDTO){
+    return this.httpClient.put<any>(`${this.apiUrl}/product`, product, this.httpAuthorization)
+  }
   buyProduct(productId : string){
     return this.httpClient.put<any>(`${this.apiUrl}/buy/${productId}`, null, this.httpAuthorization)
+  }
+
+  removeProduct(productId : string){
+    return this.httpClient.delete<any>(`${this.apiUrl}/product/${productId}`, this.httpAuthorization);
   }
 
    
