@@ -30,6 +30,11 @@ export class ProductServiceService {
       .then((res) => (this.products = res));
   }
 
+
+  buyProduct(productId : string){
+    return this.httpClient.put<any>(`${this.apiUrl}/buy/${productId}`, null, this.httpAuthorization)
+  }
+
    
 
 

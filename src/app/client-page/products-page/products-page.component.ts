@@ -19,6 +19,12 @@ export class ProductsPageComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this._getProducts();
+  }
+
+
+  _getProducts(){
+    this.isLoading = true;
     this.productService.returnUnsoldProducts().then(()=>{
       this.products = this.productService.products;
       this.isLoading = false;
@@ -34,12 +40,16 @@ export class ProductsPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
 
       if(result){
+        this.productService.buyProduct(product.id).subscribe(() =>{
+          this.showSnackBaProductBought(product.name, 'Dismiss');
+          this._getProducts();
+        })
       }
     });
   
   }
 
-    buyProduct(productName: string, action: string) {
+    showSnackBaProductBought(productName: string, action: string) {
       this._snackBar.open(
         'You have bought the product |' + productName + '|' + 
         " We're sending a confirmation email to your inbox",
@@ -57,7 +67,7 @@ export class ProductsPageComponent implements OnInit {
   }
 
   addProductWishlist(product: Product){
-    this.wishlistService.addProductInWishlist(product.id.toString()).subscribe(() =>{
+    this.wishlistService.addProductInWishlist(product.id).subscribe(() =>{
       this.showSnackBarProductSetAsWished(product, 'Undo')
     }, (err) =>{
       if (err.status === 400){
@@ -88,7 +98,7 @@ export class ProductsPageComponent implements OnInit {
         duration: 3000,
       }
     );
-    snackBarRef.onAction().subscribe(()=> this.removeProductFromWishlist(product.id.toString()));
+    snackBarRef.onAction().subscribe(()=> this.removeProductFromWishlist(product.id));
   }
 
 }
