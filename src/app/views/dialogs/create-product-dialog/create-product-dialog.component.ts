@@ -30,7 +30,11 @@ export class CreateProductDialogComponent implements OnInit {
     this.product.price = this.productForm.value.price;
     this.product.description = this.productForm.value.description;
 
-    this.productService.createProduct(this.product);
+    this.productService.createProduct(this.product).subscribe(() =>{
+      console.log('deu');
+    },(err) =>{
+      console.log(err);
+    })
   }
 
 }
