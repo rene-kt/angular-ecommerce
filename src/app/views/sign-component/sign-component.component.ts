@@ -183,5 +183,6 @@ export class SignComponentComponent implements OnInit {
 
   ngOnInit(): void {
     this.storage.logout();
+    this.storage.getLocalUser();
   }
 }

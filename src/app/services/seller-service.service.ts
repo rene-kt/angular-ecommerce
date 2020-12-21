@@ -25,7 +25,7 @@ export class SellerServiceService {
       Authorization: 'Bearer ' + this.storage.getLocalUser().token,
     }),
   };
-  returnSeller(): Promise<Seller> {
+  async returnSeller(): Promise<Seller> {
     return this.httpClient
       .get<Seller>(this.apiUrl + '/seller', this.httpAuthorization)
       .toPromise()

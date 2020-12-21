@@ -17,6 +17,7 @@ export class OrderServiceService {
   apiUrl = GlobalAPI.apiUrl;
 
   orders: Order[];
+  ordersSeller: Order[];
 
   httpAuthorization = {
     headers: new HttpHeaders({
@@ -29,6 +30,13 @@ export class OrderServiceService {
       .get<Order[]>(this.apiUrl + '/client/orders', this.httpAuthorization)
       .toPromise()
       .then((res) => (this.orders = res));
+  }
+
+  async returnOrdersSeller(): Promise<Order[]> {
+    return this.httpClient
+      .get<Order[]>(this.apiUrl + '/seller/orders', this.httpAuthorization)
+      .toPromise()
+      .then((res) => (this.ordersSeller = res));
   }
 
 
