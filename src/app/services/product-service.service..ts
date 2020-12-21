@@ -18,6 +18,7 @@ export class ProductServiceService {
 
   products: Product[];
   ownProducts: Product[];
+  productThatIsGoingToBeEdited ={} as Product;
 
   httpAuthorization = {
     headers: new HttpHeaders({
@@ -43,8 +44,8 @@ export class ProductServiceService {
     return this.httpClient.post<any>(`${this.apiUrl}/product`, product, this.httpAuthorization)
   }
 
-  updateProduct(product: ProductDTO){
-    return this.httpClient.put<any>(`${this.apiUrl}/product`, product, this.httpAuthorization)
+  updateProduct(product: ProductDTO, productId: string){
+    return this.httpClient.put<any>(`${this.apiUrl}/product/${productId}`, product, this.httpAuthorization)
   }
   buyProduct(productId : string){
     return this.httpClient.put<any>(`${this.apiUrl}/buy/${productId}`, null, this.httpAuthorization)

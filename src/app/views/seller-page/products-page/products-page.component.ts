@@ -57,13 +57,14 @@ export class ProductsPageComponentSeller implements OnInit {
     });
   }
 
-  openEditDialog(productName: string) {
+  openEditDialog(product: Product) {
     const dialogRef = this.dialog.open(EditProductDialogComponent);
 
-    
+    this.productService.productThatIsGoingToBeEdited = product;
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.showSnackBarProductEdited(productName, 'Dismiss');
+        this._getOwnProducts();
+        this.showSnackBarProductEdited(product, 'Undo');
       }
     });
   }
@@ -79,17 +80,29 @@ export class ProductsPageComponentSeller implements OnInit {
     );
   }
 
-  showSnackBarProductEdited(productName: string, action: string) {
-    this._snackBar.open(
-      'You have edited the product |' + productName + '| ',
+  showSnackBarProductEdited(product: Product, action: string) {
+    let snackBarRef = this._snackBar.open(
+      'You have edited the product |' + product.name + '|',
       action,
 
       {
         duration: 3000,
       }
     );
+    snackBarRef.onAction().subscribe(()=> this.undoTheEditAction(product));
   }
 
+
+  undoTheEditAction(product: Product){
+    this.productDTO.name = product.name;
+    this.productDTO.price = product.price;
+    this.productDTO.description = product.description;
+
+
+    this.productService.updateProduct(this.productDTO, product.id).subscribe(() =>{
+      this._getOwnProducts();
+    })
+  }
 
   undoTheRemoveAction(product: Product){
     this.productDTO.name = product.name;
