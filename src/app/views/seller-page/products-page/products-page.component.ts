@@ -18,6 +18,7 @@ export class ProductsPageComponentSeller implements OnInit {
   products: Product[];
   isLoading = true;
   productDTO = {} as ProductDTO;
+  selectedValue: string;
 
   ngOnInit(): void {
 
@@ -30,8 +31,40 @@ export class ProductsPageComponentSeller implements OnInit {
       this.isLoading = false;
     })
   }
+  selectOrder(){
 
+    switch (this.selectedValue) {
+      case 'price':
+        this._orderByPrice();
+        break;
+      
+      case 'name':
+        this._orderByName();
+        break;
+      
+      case 'unsold':
+        this._orderByUnsold();
+        break;
+    
+    }
 
+  
+  }
+  _orderByPrice(){
+    this.products = this.products.sort((a,b) => (a.price > b.price) ? -1 : ((b.price > a.price) ? 1 : 0)); 
+  }
+
+  _orderByName(){
+    this.products = this.products.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)); 
+
+  }
+
+  
+  _orderByUnsold(){
+    this.products = this.products.sort((a,b) => (a.hasBeenSold > b.hasBeenSold) ? -1 : ((b.hasBeenSold > a.hasBeenSold) ? 1 : 0)); 
+
+  }
+  
 
   openSaveDialog(){
     const dialogRef = this.dialog.open(CreateProductDialogComponent);

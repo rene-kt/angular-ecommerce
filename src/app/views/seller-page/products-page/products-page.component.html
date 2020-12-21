@@ -4,9 +4,23 @@
 <mat-paginator [length]="products?.length" [pageSize]="9">
 
 </mat-paginator>
-<button mat-fab class="add-button" (click)="openSaveDialog()">
+
+<div class="sort-and-button">
+    <button mat-fab class="add-button" (click)="openSaveDialog()" #tooltip="matTooltip" matTooltip="Add a new product">
         <i class="fas fa-plus"></i>
     </button>
+
+
+    <mat-form-field class="container " *ngIf="!isLoading">
+        <mat-label>Sort</mat-label>
+        <mat-select [(value)]="selectedValue" (selectionChange)="selectOrder()">
+            <mat-option value="price">Price</mat-option>
+            <mat-option value="name">Name</mat-option>
+            <mat-option value="unsold">Unsold</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+</div>
 
 
 <div class="cards">

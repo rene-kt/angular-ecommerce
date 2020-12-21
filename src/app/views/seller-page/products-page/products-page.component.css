@@ -1,4 +1,13 @@
 .add-button {
     background: #9006EE;
+}
+
+.sort-and-button {
     margin-left: 5%;
+    display: flex;
+}
+
+.sort-and-button mat-form-field {
+    margin-left: 2%;
+    width: 50%;
 }
