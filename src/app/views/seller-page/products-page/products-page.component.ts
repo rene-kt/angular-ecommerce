@@ -59,13 +59,14 @@ export class ProductsPageComponentSeller implements OnInit {
 
   openEditDialog(product: Product) {
     const dialogRef = this.dialog.open(EditProductDialogComponent);
-
     this.productService.productThatIsGoingToBeEdited = product;
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this._getOwnProducts();
         this.showSnackBarProductEdited(product, 'Undo');
       }
+    }, (err)=>{
+        console.log('error' +err);
     });
   }
 
@@ -126,6 +127,17 @@ export class ProductsPageComponentSeller implements OnInit {
       }
     );
     snackBarRef.onAction().subscribe(()=> this.undoTheRemoveAction(product));
+  }
+
+  showSnackBarProductHasBeenSold(action: string) {
+    this._snackBar.open(
+      'You can do that because the product has already been sold',
+      action,
+
+      {
+        duration: 3000,
+      }
+    );
   }
 
 }

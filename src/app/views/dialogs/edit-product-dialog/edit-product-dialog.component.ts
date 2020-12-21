@@ -19,6 +19,7 @@ export class EditProductDialogComponent implements OnInit {
   ngOnInit(): void {
     this.productThatIsGoingToBeEdited = this.productService.productThatIsGoingToBeEdited;
 
+    this._populateForm();
   }
 
    editForm = new FormGroup({
