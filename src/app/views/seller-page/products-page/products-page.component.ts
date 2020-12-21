@@ -1,3 +1,4 @@
+import { ProductDTO } from './../../../models/productDTO';
 import { CreateProductDialogComponent } from './../../dialogs/create-product-dialog/create-product-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,6 +17,7 @@ export class ProductsPageComponentSeller implements OnInit {
   constructor(private _snackBar: MatSnackBar, private dialog: MatDialog, private productService: ProductServiceService) {}
   products: Product[];
   isLoading = true;
+  productDTO = {} as ProductDTO;
 
   ngOnInit(): void {
 
@@ -41,12 +43,16 @@ export class ProductsPageComponentSeller implements OnInit {
       }
     });
   }
-  openRemoveDialog(productName: string) {
+  openRemoveDialog(product: Product) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.showSnackBarProductRemoved(productName, 'Dismiss');
+        this.productService.removeProduct(product.id).subscribe(() =>{
+
+          this._getOwnProducts();
+          this.showSnackBarProductRemoved(product, 'Undo');
+        })
       }
     });
   }
@@ -84,14 +90,29 @@ export class ProductsPageComponentSeller implements OnInit {
     );
   }
 
-  showSnackBarProductRemoved(productName: string, action: string) {
-    this._snackBar.open(
-      'You have removed the product |' + productName + '| ',
+
+  undoTheRemoveAction(product: Product){
+    this.productDTO.name = product.name;
+    this.productDTO.price = product.price;
+    this.productDTO.description = product.description;
+
+
+    this.productService.createProduct(this.productDTO).subscribe(() =>{
+      this.showSnackBarProductCreated('Dismiss');
+      this._getOwnProducts();
+    })
+  }
+
+  showSnackBarProductRemoved(product: Product, action: string) {
+    let snackBarRef = this._snackBar.open(
+      'You have removed the product |' + product.name + '|',
       action,
 
       {
         duration: 3000,
       }
     );
+    snackBarRef.onAction().subscribe(()=> this.undoTheRemoveAction(product));
   }
+
 }
