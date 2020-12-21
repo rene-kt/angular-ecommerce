@@ -32,10 +32,14 @@ export class WishlistPageComponent implements OnInit {
 
 
   selectOrder(){
-    if(this.selectedValue==='price'){
-      this._orderByPrice();
-    }else if(this.selectedValue === 'name'){
-      this._orderByName();
+    switch (this.selectedValue) {
+      case 'price':
+        this._orderByPrice();
+        break;
+
+      case 'name':
+        this._orderByName();
+        break;
     }
   }
   _orderByPrice(){

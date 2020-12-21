@@ -26,12 +26,17 @@ export class OrderPageComponent implements OnInit {
 
 
   selectOrder(){
-    if(this.selectedValue==='price'){
-      this._orderByPrice();
-    }else if(this.selectedValue === 'name'){
-      this._orderByName();
-    }else if(this.selectedValue === 'date'){
-      this._orderByDate();
+    switch (this.selectedValue) {
+      case 'price':
+        this._orderByPrice();
+        break;
+
+      case 'name':
+        this._orderByName();
+        break;
+      case 'date':
+        this._orderByDate();
+        break;
     }
   }
   _getOrders(){
