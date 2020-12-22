@@ -14,23 +14,39 @@
 
 <div class="cards">
 
-    <mat-card class="card" *ngFor="let product of wishlist">
-        <mat-card-header class="header">
-            <mat-card-title>{{ product.name }}</mat-card-title>
-            <mat-card-title> R${{ product.price }}</mat-card-title>
-            <mat-card-subtitle>{{ product.productOwner.name }}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-            <p>
-                {{product.description}}
-            </p>
-        </mat-card-content>
-        <mat-card-actions class="buttons">
+    <div class="products" *ngFor="let product of wishlist">
+
+        <div class="name">{{product.name}}</div>
+
+        <div class="price">R${{product.price}}</div>
+
+        <mat-divider></mat-divider>
+
+        <div class="same-row">
+
+
+
+            <div class="seller">
+
+                <div class="owner">OWNER</div>
+                <div class="owner-name">{{product.productOwner.name}}</div>
+
+            </div>
+
+            <div class="description">
+                <div class="owner">DESCRIPTION</div>
+                <div class="owner-name">{{product.description}}</div>
+
+
+            </div>
+        </div>
+
+        <div class="buttons">
             <button mat-button (click)="removeProductFromWishlist(product)"> <i class="fas fa-times"></i> REMOVE</button>
             <button mat-button (click)="openBuyDialog(product)"> <i class="fas fa-shopping-cart"></i> BUY</button>
-        </mat-card-actions>
-    </mat-card>
+        </div>
 
+    </div>
 
 
 </div>

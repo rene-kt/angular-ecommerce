@@ -112,6 +112,79 @@ body {
     margin: 0 5% 5% 5%;
 }
 
+.cards .products {
+    width: 30%;
+    height: 35vh;
+    color: #131313;
+    background: #fff;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-size: 3vh;
+    position: relative;
+}
+
+.cards .products .buttons {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.cards .products .name {
+    background-color: var(--purple);
+    color: #fff;
+    font-weight: 800;
+    text-align: center;
+    width: 100%;
+    height: 5vh;
+}
+
+.cards .products .price {
+    color: #32bd0f;
+    font-weight: 800;
+    padding-left: 5%;
+    padding-top: 5%;
+    font-size: 4vh;
+}
+
+.cards .products .same-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cards .products .description {
+    display: block;
+    padding-right: 5%;
+    padding-top: 5%;
+    font-size: 2vh;
+}
+
+.cards .products .description .owner {
+    font-weight: 500;
+    color: #717171;
+}
+
+.cards .products .description .owner-name {
+    font-weight: 800;
+}
+
+.cards .products .seller {
+    display: block;
+    padding-left: 5%;
+    padding-top: 5%;
+    font-size: 2vh;
+}
+
+.cards .products .seller .owner {
+    font-weight: 500;
+    color: #717171;
+}
+
+.cards .products .seller .owner-name {
+    font-weight: 800;
+}
+
 .card {
     margin-top: 5%;
     width: 30%;
