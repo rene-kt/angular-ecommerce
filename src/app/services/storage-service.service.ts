@@ -1,3 +1,4 @@
+import { SignServiceService } from './sign-service.service';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { STORAGE_KEYS } from '../config/storage.config';
@@ -33,6 +34,7 @@ export class StorageServiceService {
       this.router.navigateByUrl('/sign-page');
     }
   }
+
 
   logout(){
     this.setLocalUser(null);
