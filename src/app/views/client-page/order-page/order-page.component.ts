@@ -24,7 +24,7 @@ export class OrderPageComponent implements OnInit {
     this._getOrders();
   }
 
-
+  
   selectOrder(){
     switch (this.selectedValue) {
       case 'price':

@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { StorageServiceService } from './../../../services/storage-service.service';
 
 import { Component, OnInit } from '@angular/core';
 import { ClientServiceService } from 'src/app/services/client-service.service';
@@ -13,7 +15,9 @@ import { RankingServerService } from 'src/app/services/ranking-server.service';
 export class HomePageComponent implements OnInit {
   constructor(
     private clientService: ClientServiceService,
-    private rankingService: RankingServerService
+    private rankingService: RankingServerService,
+    private storageService: StorageServiceService,
+    private router: Router
   ) {}
 
   client = {} as Client;
@@ -23,10 +27,13 @@ export class HomePageComponent implements OnInit {
   rankingSeller: UserRanking[];
 
   ngOnInit(): void {
+    
     this._returnClientLogged();
     this._returnClientRanking();
     this._returnSellerRanking();
   }
+
+  
 
   _returnClientLogged() {
     this.clientService.returnClient().then(() => {

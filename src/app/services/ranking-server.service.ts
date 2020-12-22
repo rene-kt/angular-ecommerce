@@ -25,7 +25,7 @@ export class RankingServerService {
   httpAuthorization = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + this.storage.getLocalUser().token,
+      Authorization: 'Bearer ' + this.storage.getLocalUser()?.token,
     }),
   };
 

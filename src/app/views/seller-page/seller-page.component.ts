@@ -1,3 +1,4 @@
+import { StorageServiceService } from './../../services/storage-service.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SellerPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private storage: StorageServiceService) { }
 
   ngOnInit(): void {
+    this.storage.theresAnyUserLogged();
   }
 
 }

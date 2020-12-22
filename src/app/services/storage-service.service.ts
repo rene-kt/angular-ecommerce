@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { STORAGE_KEYS } from '../config/storage.config';
 import { LocalUser } from '../models/users/local-user';
@@ -6,7 +7,7 @@ import { LocalUser } from '../models/users/local-user';
   providedIn: 'root'
 })
 export class StorageServiceService {
-
+  constructor(private router: Router) { }
   getLocalUser(): LocalUser {
     let usr = localStorage.getItem(STORAGE_KEYS.localUser);
     if (usr == null) {
@@ -27,8 +28,14 @@ export class StorageServiceService {
 
   }
 
+  theresAnyUserLogged(){
+    if(this.getLocalUser()===null){
+      this.router.navigateByUrl('/sign-page');
+    }
+  }
+
   logout(){
     this.setLocalUser(null);
   }
-  constructor() { }
+
 }

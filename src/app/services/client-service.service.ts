@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { UpdatedUser } from '../models/updated/user-updated';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -12,7 +13,8 @@ import { GlobalAPI } from './api.service';
 export class ClientServiceService {
   constructor(
     private httpClient: HttpClient,
-    private storage: StorageServiceService
+    private storage: StorageServiceService,
+    private router: Router
   ) {}
 
   userStorage = {} as LocalUser;
@@ -22,10 +24,11 @@ export class ClientServiceService {
   httpAuthorization = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + this.storage.getLocalUser().token,
+      Authorization: 'Bearer ' + this.storage.getLocalUser()?.token,
     }),
   };
-  returnClient(): Promise<Client> {
+  async returnClient(): Promise<Client> {
+
     return this.httpClient
       .get<Client>(this.apiUrl + '/client', this.httpAuthorization)
       .toPromise()
