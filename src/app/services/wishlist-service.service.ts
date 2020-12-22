@@ -16,27 +16,42 @@ export class WishlistServiceService {
   apiUrl = GlobalAPI.apiUrl;
   wishlist: Product[];
 
-  httpAuthorization = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + this.storage.getLocalUser()?.token,
-    }),
-  };
+  
 
     addProductInWishlist(productId: string) {
-
+      let httpAuthorization = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + this.storage.getLocalUser()?.token,
+        }),
+      };
+      
     return this.httpClient
-      .post<any>(`${this.apiUrl}/wishlist/${productId}`, null, this.httpAuthorization);
+      .post<any>(`${this.apiUrl}/wishlist/${productId}`, null, httpAuthorization);
       
   }
 
   removeProductFromWishlist(productId: string){
-    return this.httpClient.delete<any>(`${this.apiUrl}/wishlist/${productId}`, this.httpAuthorization);
+    let httpAuthorization = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.storage.getLocalUser()?.token,
+      }),
+    };
+    
+    return this.httpClient.delete<any>(`${this.apiUrl}/wishlist/${productId}`,httpAuthorization);
   }
 
   async returnWishlist(): Promise<Product[]> {
+    let httpAuthorization = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.storage.getLocalUser()?.token,
+      }),
+    };
+    
     return this.httpClient
-      .get<Product[]>(this.apiUrl + '/wishlist', this.httpAuthorization)
+      .get<Product[]>(this.apiUrl + '/wishlist', httpAuthorization)
       .toPromise()
       .then((res) => (this.wishlist = res));
   }

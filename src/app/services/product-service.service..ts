@@ -34,25 +34,63 @@ export class ProductServiceService {
   }
 
   async returnOwnProducts(): Promise<Product[]> {
+
+    let httpAuthorization = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.storage.getLocalUser()?.token,
+    }),
+  };
+
     return this.httpClient
-      .get<Product[]>(this.apiUrl + '/ownproducts', this.httpAuthorization)
+      .get<Product[]>(this.apiUrl + '/ownproducts', httpAuthorization)
       .toPromise()
       .then((res) => (this.ownProducts = res));
   }
 
   createProduct(product: ProductDTO){
-    return this.httpClient.post<any>(`${this.apiUrl}/product`, product, this.httpAuthorization)
+
+    let httpAuthorization = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.storage.getLocalUser()?.token,
+      }),
+    };
+    
+    return this.httpClient.post<any>(`${this.apiUrl}/product`, product, httpAuthorization)
   }
 
   updateProduct(product: ProductDTO, productId: string){
-    return this.httpClient.put<any>(`${this.apiUrl}/product/${productId}`, product, this.httpAuthorization)
+
+    let httpAuthorization = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.storage.getLocalUser()?.token,
+      }),
+    };
+    
+    return this.httpClient.put<any>(`${this.apiUrl}/product/${productId}`, product, httpAuthorization)
   }
   buyProduct(productId : string){
-    return this.httpClient.put<any>(`${this.apiUrl}/buy/${productId}`, null, this.httpAuthorization)
+    let httpAuthorization = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.storage.getLocalUser()?.token,
+      }),
+    };
+    
+    return this.httpClient.put<any>(`${this.apiUrl}/buy/${productId}`, null, httpAuthorization)
   }
 
   removeProduct(productId : string){
-    return this.httpClient.delete<any>(`${this.apiUrl}/product/${productId}`, this.httpAuthorization);
+    let httpAuthorization = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.storage.getLocalUser()?.token,
+      }),
+    };
+    
+    return this.httpClient.delete<any>(`${this.apiUrl}/product/${productId}`, httpAuthorization);
   }
 
    

@@ -14,4 +14,9 @@ export class SellerPageComponent implements OnInit {
     this.storage.theresAnyUserLogged();
   }
 
+
+  logout(){
+    this.storage.logout();
+  }
+
 }

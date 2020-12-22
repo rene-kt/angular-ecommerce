@@ -19,22 +19,31 @@ export class OrderServiceService {
   orders: Order[];
   ordersSeller: Order[];
 
-  httpAuthorization = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + this.storage.getLocalUser()?.token,
-    }),
-  };
+ 
   async returnOrders(): Promise<Order[]> {
+    let httpAuthorization = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.storage.getLocalUser()?.token,
+      }),
+    };
+    
     return this.httpClient
-      .get<Order[]>(this.apiUrl + '/client/orders', this.httpAuthorization)
+      .get<Order[]>(this.apiUrl + '/client/orders', httpAuthorization)
       .toPromise()
       .then((res) => (this.orders = res));
   }
 
   async returnOrdersSeller(): Promise<Order[]> {
+    let httpAuthorization = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.storage.getLocalUser()?.token,
+      }),
+    };
+    
     return this.httpClient
-      .get<Order[]>(this.apiUrl + '/seller/orders', this.httpAuthorization)
+      .get<Order[]>(this.apiUrl + '/seller/orders', httpAuthorization)
       .toPromise()
       .then((res) => (this.ordersSeller = res));
   }
