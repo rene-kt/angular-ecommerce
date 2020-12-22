@@ -23,26 +23,41 @@
 </div>
 
 
-<div class="cards">
+<div class="cards" *ngIf="!isLoading">
+
+    <div class="products" *ngFor="let product of products">
+
+        <div class="name">{{product.name}}</div>
+
+        <div class="price">R${{product.price}}</div>
+
+        <mat-divider></mat-divider>
+
+        <div class="same-row">
 
 
-    <mat-card class="card" *ngFor="let product of products">
-        <mat-card-header class="header">
-            <mat-card-title>{{ product.name }} </mat-card-title>
-            <mat-card-title>R$ {{ product.price }} </mat-card-title>
-            <mat-card-subtitle>{{ product.hasBeenSold }}</mat-card-subtitle>
 
-        </mat-card-header>
-        <mat-card-content>
-            <p>
-                {{product.description}}
-            </p>
-        </mat-card-content>
-        <mat-card-actions class="buttons">
-            <button [disabled]="product.hasBeenSold==='Sold'" mat-button (click)="openEditDialog(product)"> <i class="fas fa-edit"></i> EDIT</button>
-            <button [disabled]="product.hasBeenSold==='Sold'" mat-button (click)="openRemoveDialog(product)"> <i class="fas fa-times"></i> REMOVE</button>
-        </mat-card-actions>
-    </mat-card>
+            <div class="seller">
+
+                <div class="owner">OWNER</div>
+                <div class="owner-name">{{product.productOwner.name}}</div>
+
+            </div>
+
+            <div class="description">
+                <div class="owner">DESCRIPTION</div>
+                <div class="owner-name">{{product.description}}</div>
+
+
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button [disabled]="product.hasBeenSold === 'Sold'" mat-button (click)="openEditDialog(product)"> <i class="fas fa-edit"></i> EDIT</button>
+            <button [disabled]="product.hasBeenSold === 'Sold'" mat-button (click)="openRemoveDialog(product)"> <i class="fas fa-times"></i> REMOVE</button>
+        </div>
+
+    </div>
 
 
 </div>
