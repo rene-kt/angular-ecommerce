@@ -1,27 +1,52 @@
-# AngularEcommerce
+# Angular Rest API 🅰️ 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
 
-## Development server
+This project was made with Angular 8, it's a  ecommerce frontend,  the application is connected with [spring-restapi-ecommerce](https://github.com/reness0/spring-restapi-ecommerce) through API. However, you can create your own API and use this repository as a boilerplate to build your own application.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Technologies :computer:
 
-## Code scaffolding
+- Angular 8 
+- TypeScript
+- Bootstrap 
+- HTML/CSS
+- Rest API
+ 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## How to use :wave:
 
-## Build
+To clone and run this application by yourself, make sure you have NodeJS, Git and a terminal (doesn't matter which), just to run the commands. After that, do the following instructions: 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+**_First of all, make sure  you have downloaded the [backend](https://github.com/reness0/spring-restapi-ecommerce) and have ran the server. The instruction of how to do that is on it's readme._**
 
-## Running unit tests
+```bash
+# Clone this repository
+$ git clone https://github.com/reness0/angular-ecommerce
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# Go into the repository
+$ cd angular-ecommerce
+```
+# Install dependencies
+```
+$ npm i
+```
 
-## Running end-to-end tests
+# Run the app
+```
+$ ng serve -o
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Now, all you need to do, is access on your browser: http://localhost:4200
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## How to contribute :question:
+
+1. Make a fork;
+2. Create a branch with your feature: `git checkout -b my-feature`;
+3. Commit changes: `git commit -m 'Updating the css'`;
+4. Push the changes: `git push origin my-feature`.
+
+
+
+
+
+
