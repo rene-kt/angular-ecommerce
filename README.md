@@ -3,6 +3,13 @@
 
 This project was made with Angular 8, it's a  ecommerce frontend,  the application is connected with [spring-restapi-ecommerce](https://github.com/reness0/spring-restapi-ecommerce) through API. However, you can create your own API and use this repository as a boilerplate to build your own application.
 
+
+## Live demo 
+
+![deploy](https://user-images.githubusercontent.com/49681380/103041067-1792d400-4554-11eb-88a6-4551cd244afb.JPG)
+
+[Click here to acess the page](https://rene-angular-ecommerce.herokuapp.com/sign-page)
+
 ## Technologies :computer:
 
 - Angular 8 
